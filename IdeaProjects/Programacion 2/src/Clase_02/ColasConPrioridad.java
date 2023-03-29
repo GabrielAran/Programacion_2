@@ -22,14 +22,12 @@ public class ColasConPrioridad implements colasPrioridad{
             cambios = false;
             for (int i = 0; i < count; i++) {
                 if (this.prioridades[i] < prioridades[i + 1]) {
-
                     // Cambio los valores d lugar ya que son paralelos
                     aux = this.array[i];
                     this.array[i] = array[i + 1];
                     array[i + 1] = aux;
 
                     // Cambio las prioridades d lugar ya que son paralelos
-
                     auxPrio = this.prioridades[i];
                     this.prioridades[i] = prioridades[i + 1];
                     prioridades[i + 1] = auxPrio;
@@ -38,7 +36,7 @@ public class ColasConPrioridad implements colasPrioridad{
                 }
             }
             if (!cambios){
-                break;
+                break; // YA NO HAY QUE ORDENAR --> NO ENTRO AL IF (:
             }
         }
         this.count++;

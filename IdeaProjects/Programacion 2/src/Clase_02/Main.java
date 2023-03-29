@@ -7,9 +7,10 @@ public class Main {
         //COLAS_PRIORIDAD COLAS_PRIORIDAD COLAS_PRIORIDAD COLAS_PRIORIDAD COLAS_PRIORIDAD COLAS_PRIORIDAD
 
         ColasConPrioridad colita = new ColasConPrioridad();
-        colita.acolarPrioridad('a', 3);
+
+        colita.acolarPrioridad('a', 2);
         System.out.println(colita.getPrimeroPrioridad());
-        colita.acolarPrioridad('b', 4);
+        colita.acolarPrioridad('b', 10);
         System.out.println(colita.getPrimeroPrioridad());
         colita.acolarPrioridad('c', 8);
         System.out.println(colita.getPrimeroPrioridad());
@@ -31,7 +32,7 @@ public class Main {
         pila.apilar(2);
         pila.apilar(3);
 
-        System.out.println(pila.getTope());
+        System.out.println("El tope es: " + pila.getTope());
         pila.desapilar();
         System.out.println(pila.getTope());
         pila.apilar(9);
@@ -45,6 +46,7 @@ public class Main {
         //COLASCOLASCOLASCOLASCOLASCOLASCOLASCOLASCOLASCOLASCOLASCOLASCOLASCOLASCOLASCOLASCOLAS
 
         Colas coto = new Colas();
+
         coto.acolar(1);
         coto.acolar(2);
         coto.acolar(3);
