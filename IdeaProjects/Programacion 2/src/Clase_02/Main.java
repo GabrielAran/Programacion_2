@@ -6,7 +6,7 @@ public class Main {
 
         //COLAS_PRIORIDAD COLAS_PRIORIDAD COLAS_PRIORIDAD COLAS_PRIORIDAD COLAS_PRIORIDAD COLAS_PRIORIDAD
 
-        ColasPrioridad colita = new ColasPrioridad();
+        ColasConPrioridad colita = new ColasConPrioridad();
         colita.acolarPrioridad('a', 3);
         System.out.println(colita.getPrimeroPrioridad());
         colita.acolarPrioridad('b', 4);
