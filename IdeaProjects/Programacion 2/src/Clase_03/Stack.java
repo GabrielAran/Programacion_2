@@ -4,7 +4,7 @@ public class Stack implements IStack{
     private Node first;
 
     public Stack() {
-        this.first = null; // INICIALIZA LA PILA
+        this.first = null; // INICIALIZA LA PILA    
     }
 
     @Override
@@ -37,14 +37,13 @@ public class Stack implements IStack{
 
         // CASO Q HAYA MAS DE UN NODO
 
-        Node primero = this.first;
-        Node segundo = this.first.getNext();
+        Node primero = this.first; // auxiliar q agarra el primero
+        Node segundo = this.first.getNext(); // auxiliar q agarra el segundo
 
-        while(segundo.getNext() != null) {
+        while(segundo.getNext() != null) { // MIENTRAS Q EL 2DO TENGA SIGUIENTE
             primero = segundo;
             segundo = segundo.getNext();
         }
-
         primero.setNext(null);
     }
 
