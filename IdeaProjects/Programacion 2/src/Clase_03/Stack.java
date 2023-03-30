@@ -4,7 +4,7 @@ public class Stack implements IStack{
     private Node first;
 
     public Stack() {
-        this.first = null;
+        this.first = null; // INICIALIZA LA PILA
     }
 
     @Override
@@ -15,11 +15,13 @@ public class Stack implements IStack{
     @Override
     public void add(int a) {
         Node node = new Node(a, null);
-        if(this.first == null) {
+
+        if(this.first == null) { // SI ES EL PRIMERO Q AGREGAS
             this.first = node;
-            return; //SALE DE LA FUNCION
+            return; // SALE DE LA FUNCION, LO Q SIGUE NO SE EJECUTA
         }
-        Node candidato = this.first;
+
+        Node candidato = this.first; // CREA AUXILIAR
         while(candidato.getNext() != null) {
             candidato = candidato.getNext();
         }
@@ -28,19 +30,22 @@ public class Stack implements IStack{
 
     @Override
     public void remove() {
-        if (this.first.getNext() == null) {
-            this.first = null;
-            return;
+        if (this.first.getNext() == null) { // SI HAY UNO SOLO
+            this.first = null; // ESE SOLO PASA A SER NULL
+            return; // CORTA LA FUNCION
         }
 
-        Node backup = this.first;
-        Node candidate = this.first.getNext();
-        while(candidate.getNext() != null) {
-            backup = candidate;
-            candidate = candidate.getNext();
+        // CASO Q HAYA MAS DE UN NODO
+
+        Node primero = this.first;
+        Node segundo = this.first.getNext();
+
+        while(segundo.getNext() != null) {
+            primero = segundo;
+            segundo = segundo.getNext();
         }
 
-        backup.setNext(null);
+        primero.setNext(null);
     }
 
     @Override
