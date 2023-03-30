@@ -16,6 +16,7 @@ public class Main {
         System.out.println(colita.getPrimeroPrioridad());
 
         System.out.println("\n");
+        System.out.println("GABO ES LO MAS");
 
         colita.desacolarPrioridad();
         System.out.println("Desacole " + colita.getPrimeroPrioridad());
