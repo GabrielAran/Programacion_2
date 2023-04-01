@@ -32,7 +32,7 @@ public class Conjuntos {
         }
         return (i < cont);
     }
-    
+
     public void Sacar(int x) {
         int i = 0;
         while (i < cont && conjunto[i] != x) { // MISMO Q PERTENECE, PERO NECESITO 'i'
