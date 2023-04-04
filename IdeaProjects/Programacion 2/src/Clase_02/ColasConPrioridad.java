@@ -60,4 +60,8 @@ public class ColasConPrioridad implements colasPrioridad{
     public char getPrimeroPrioridad() {
         return this.array[0];
     }
+
+    public int getPrimeroPrioridadPrioridad(){
+        return this.prioridades[0];
+    }
 }
