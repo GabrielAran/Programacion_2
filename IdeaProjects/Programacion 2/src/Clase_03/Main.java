@@ -6,14 +6,18 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("NODOS --- DINAMICAS");
 
-        Stack taki = new Stack();
+        PilaNodosAlternativa taki = new PilaNodosAlternativa();
 
         taki.add(8);
         System.out.println(taki.getTop());
         taki.add(29);
+        System.out.println(taki.getTop());
         taki.add(9);
+        System.out.println(taki.getTop());
+        taki.remove();
+        System.out.println("Desapile el 9: " + taki.getTop());
 
-        randomes();
+        //randomes();
     }
 
     public static void randomes(){
