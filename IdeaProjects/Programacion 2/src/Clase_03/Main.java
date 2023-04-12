@@ -18,6 +18,7 @@ public class Main {
         System.out.println("Desapile el 9: " + taki.getTop());
 
         //randomes();
+        throw new RuntimeException("La baja bro"); // ESTO TIRA UN ERROR Y CORTA LA FUNCIÓN
     }
 
     public static void randomes(){

@@ -1,6 +1,8 @@
 package Clase_03;
 
-public class Conjuntos {
+import java.util.Random;
+
+public class Conjuntos implements conjuntosInterfaz{
     private int[] conjunto; //el contenido del conjunto
     private int cont; //la cantidad de elementos
 
@@ -21,7 +23,12 @@ public class Conjuntos {
     }
 
     public int Elegir() {
-        return this.conjunto[this.cont - 1]; //esto es arbitrario; podria ser cualquiera
+        if (this.cont == 0){
+            System.out.println("No se puede elegir un elemento de un conjunto vacio");
+            return -1;
+        }
+        int randomIndex = (new Random()).nextInt(this.cont);
+        return this.conjunto[randomIndex];
     }
 
     public boolean Pertenece(int x) {
