@@ -12,8 +12,8 @@ public class Main {
         binaryTree.getLeft().getRight().addRight(6);
 
         // ESTO PRINTEA IN-ORDER, OSEA: LEFT-ROOT-RIGHT
-
         printInOrder(binaryTree);
+        System.out.println("El peso del Arbol es: " + pesoArbol(binaryTree));
     }
 
     public static void printInOrder(BinaryTree binaryTree) {
@@ -23,6 +23,18 @@ public class Main {
         printInOrder(binaryTree.getLeft());
         System.out.println(binaryTree.getValue());
         printInOrder(binaryTree.getRight());
+    }
+
+    public static int pesoArbol(BinaryTree binaryTree) {
+        if(binaryTree == null || binaryTree.isEmpty()) {
+            return 0;
+        }
+        return 1 + pesoArbol(binaryTree.getLeft()) + pesoArbol(binaryTree.getRight());
+    }
+
+    public static int alturaArbol(BinaryTree arbolito){
+        // ESTUDIAR RECURSIVIDAD
+        return 1;
     }
 }
 
