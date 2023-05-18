@@ -3,7 +3,7 @@ package Recursividad;
 public class Main {
     public static void main(String[] args) {
         System.out.println("RECURSIVIDAD");
-        /*int paco = 2;
+        int paco = 2;
         int paco2 = 3;
         System.out.println(suma(paco, paco2)); //suma
 
@@ -13,7 +13,7 @@ public class Main {
 
         System.out.println(factorial(4)); //factorial
 
-        System.out.println(fibonacci(4)); //fibonashe*/
+        System.out.println(fibonacci(4)); //fibonashe
 
         System.out.println(gcd(16, 4));
     }

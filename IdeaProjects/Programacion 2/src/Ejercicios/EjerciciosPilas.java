@@ -31,7 +31,7 @@ public class EjerciciosPilas {
         int aux = 0;
         PIla pilaFinal = new PIla();
 
-        while (!pilaInicial.isEmpty()){
+        while (!pilaInicial.isEmpty()){ // pilaInicial.isEmpty() == false
             aux = pilaInicial.getTope();
             pilaFinal.apilar(aux);
             pilaInicial.desapilar();

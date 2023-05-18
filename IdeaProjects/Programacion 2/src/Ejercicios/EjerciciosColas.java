@@ -84,7 +84,6 @@ public class EjerciciosColas {
             aux1.desacolar();
             aux2.desacolar();
         }
-
         return capi;
     }
 }
