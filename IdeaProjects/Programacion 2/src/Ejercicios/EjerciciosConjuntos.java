@@ -12,17 +12,18 @@ public class EjerciciosConjuntos {
         Conjuntos conj2 = new Conjuntos();
         conj2.Agregar(7);
         conj2.Agregar(5);
+        //conj2.Agregar(9); descomentar la linea para comprobar que da falso (:
 
         System.out.println(Incluye(conj1, conj2));
     }
 
     public static boolean Incluye(Conjuntos c1, Conjuntos c2) {
-        //RETORNA TRUE SI LOS ELEMENTOS DE C2, ESTAN TMB EN C1
+        //RETORNA TRUE SI LOS ELEMENTOS DE C2, ESTAN EN C1
         int valor = 0;
         boolean incluye = true;
-        while (!c2.ConjuntoVacio() && incluye) {
-            valor = c2.Elegir(); // --> Agarra un elemento clq del c2, (Seria el último).
-            if (!c1.Pertenece(valor)) { // Si ese valor no esta en el c1, entonces retorna FALSE.
+        while (!c2.ConjuntoVacio() && incluye) { // c2 no vacio y incluye = true
+            valor = c2.Elegir(); // --> Agarra un elemento random del c2.
+            if (!c1.Pertenece(valor)) { // Si ese valor no esta en el c1, entonces incluye = FALSE.
                 incluye = false;
             } else { // Si el valor si esta en el c1, entonces lo saca del c2.
                 c2.Sacar(valor);
@@ -36,4 +37,6 @@ public class EjerciciosConjuntos {
          */
         return incluye;
     }
+
+    // HACER EJERCICIOS DE CONJUNTOS DE TIPO: UNION, INTERSECCION Y DIFERENCIA
 }

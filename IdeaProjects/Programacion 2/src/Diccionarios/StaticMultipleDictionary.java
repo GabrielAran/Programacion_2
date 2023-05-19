@@ -12,20 +12,20 @@ public class StaticMultipleDictionary implements IMultipleDictionary {
 
     public StaticMultipleDictionary() {
         this.keys = new int[100];
-        this.values = new Conjuntos[100];
+        this.values = new Conjuntos[100]; // CREO QUE TOMA A LOS VALORES DE UNA KEY COMO UN SET, (conjunto).
         this.cantValores = 0;
     }
 
     @Override
     public void add(int key, int value) {
         int index = indexOfKey(key);
-        if (index != -1) {
+        if (index != -1) { // la key ya existe
             Conjuntos staticSet = new Conjuntos();
             staticSet.Agregar(value);
             this.values[index] = staticSet;
             return;
         }
-        if (this.cantValores == this.keys.length) {
+        if (this.cantValores == this.keys.length) { // NO LEER ESTO, MUY XD
             // Si el array de keys está lleno, se duplica su tamaño
             this.keys = Arrays.copyOf(this.keys, this.keys.length * 2);
             this.values = Arrays.copyOf(this.values, this.values.length * 2);

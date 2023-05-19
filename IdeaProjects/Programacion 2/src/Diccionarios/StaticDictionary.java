@@ -18,19 +18,19 @@ public class StaticDictionary implements IDictionary {
     }
 
     @Override
-    public void add(int key, int value) {
-        int index = indexOfKey(key); // INDEX = -1: NO EXISTE LA KEY
+    public void add(int key, int value) { // si una key ya existe, su value se reemplaza:
+        int index = indexOfKey(key); // agarra la pos de la key
         if (index != -1) { // EXISTE LA KEY, ENTONCES:
             this.values[index] = value; // Si la key ya existe, se reemplaza el value
             return;
         }
-        if (this.cantValues == this.keys.length) {
+        if (this.cantValues == this.keys.length) { // NO LE PRESTEN ATENCION A ESTO, ES TROLL
             // Si el array de keys está lleno, se duplica su tamaño
             this.keys = Arrays.copyOf(this.keys, this.keys.length * 2);
             this.values = Arrays.copyOf(this.values, this.values.length * 2);
         }
-        this.keys[this.cantValues] = key;
-        this.values[this.cantValues] = value;
+        this.keys[this.cantValues] = key; // agrega nueva key
+        this.values[this.cantValues] = value; // setea el valor
         this.cantValues++;
     }
 
@@ -41,7 +41,7 @@ public class StaticDictionary implements IDictionary {
             for (int i = index; i < this.cantValues - 1; i++) { // LOS PISA DESDE Q ESTA EL VALOR
                 this.keys[i] = this.keys[i + 1];
                 this.values[i] = this.values[i + 1];
-            }
+            } // reemplaza todos desde la pos de la key, con el de adelante.
             this.cantValues--;
         }
     }
@@ -69,12 +69,12 @@ public class StaticDictionary implements IDictionary {
         return this.cantValues == 0;
     }
 
-    private int indexOfKey(int key) {
+    private int indexOfKey(int key) { // ESTO RETORNA EN QUE POSICION ESTA LA KEY, (INDEX OF KEY).
         for (int i = 0; i < this.cantValues; i++) {
             if (this.keys[i] == key) {
                 return i;
             }
         }
-        return -1;
+        return -1; // SI LA LLAVE NO EXISTE, RETORNA -1
     }
 }
