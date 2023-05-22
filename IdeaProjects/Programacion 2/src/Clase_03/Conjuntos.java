@@ -1,8 +1,10 @@
 package Clase_03;
 
+import NodosCosas.ISet;
+
 import java.util.Random;
 
-public class Conjuntos implements conjuntosInterfaz{
+public class Conjuntos implements ISet {
     private int[] conjunto; //el contenido del conjunto
     private int cont; //la cantidad de elementos
 
@@ -11,18 +13,18 @@ public class Conjuntos implements conjuntosInterfaz{
         this.cont = 0;
     }
 
-    public void Agregar(int x) { // no se puede agregar un elemento que ya exista (:
+    public void add(int x) { // no se puede agregar un elemento que ya exista (:
         if (!Pertenece(x)) { //verifiacion de no pertenencia
             this.conjunto[this.cont] = x;
             this.cont++; //nuevo elemento
         }
     }
 
-    public boolean ConjuntoVacio() {
+    public boolean isEmpty() {
         return (this.cont == 0);
     }
 
-    public int Elegir() {
+    public int choose() {
         if (this.cont == 0){
             System.out.println("No se puede elegir un elemento de un conjunto vacio");
             return -1;
@@ -40,7 +42,7 @@ public class Conjuntos implements conjuntosInterfaz{
         return (i < this.cont); // si i < cont entonces retorna true
     }
 
-    public void Sacar(int x) { // no se puede borrar un elemento que no esta, obvio (:
+    public void remove(int x) { // no se puede borrar un elemento que no esta, obvio (:
         int i = 0;
         while (i < this.cont && this.conjunto[i] != x) { // MISMO Q PERTENECE, PERO NECESITO 'i'
             i++;

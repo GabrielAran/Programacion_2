@@ -1,6 +1,6 @@
 package Diccionarios;
 
-import Clase_03.conjuntosInterfaz;
+import NodosCosas.ISet;
 
 /**
  * Precondicion: para usar cualquier de estos metodos la estructura debe estar inicializada.
@@ -26,7 +26,7 @@ public interface IDictionary {
     /**
      * @return conjunto con todas las claves del diccionario
      */
-    conjuntosInterfaz getKeys();
+    ISet getKeys();
 
     /**
      * Devuelve el valor asociado a una key.

@@ -1,7 +1,7 @@
 package Diccionarios;
 
 import Clase_03.Conjuntos;
-import Clase_03.conjuntosInterfaz;
+import NodosCosas.ISet;
 
 import java.util.Arrays;
 
@@ -47,10 +47,10 @@ public class StaticDictionary implements IDictionary {
     }
 
     @Override
-    public conjuntosInterfaz getKeys() {
-        conjuntosInterfaz keySet = new Conjuntos();
+    public ISet getKeys() {
+        ISet keySet = new Conjuntos();
         for (int i = 0; i < this.cantValues; i++) {
-            keySet.Agregar(this.keys[i]);
+            keySet.add(this.keys[i]);
         }
         return keySet; // CONJUNTO CN LAS CLAVES DEL DICCIONARIO
     }

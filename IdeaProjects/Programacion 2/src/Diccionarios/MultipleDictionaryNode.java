@@ -1,14 +1,14 @@
 package Diccionarios;
 
-import Clase_03.conjuntosInterfaz;
+import NodosCosas.ISet;
 
 public class MultipleDictionaryNode {
 
     private int key;
-    private conjuntosInterfaz value;
+    private ISet value;
     private MultipleDictionaryNode next;
 
-    public MultipleDictionaryNode(int key, conjuntosInterfaz value, MultipleDictionaryNode next) {
+    public MultipleDictionaryNode(int key, ISet value, MultipleDictionaryNode next) {
         this.key = key;
         this.value = value;
         this.next = next;
@@ -22,11 +22,11 @@ public class MultipleDictionaryNode {
         this.key = key;
     }
 
-    public conjuntosInterfaz getValue() {
+    public ISet getValue() {
         return value;
     }
 
-    public void setValue(conjuntosInterfaz value) {
+    public void setValue(ISet value) {
         this.value = value;
     }
 

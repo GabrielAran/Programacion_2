@@ -1,18 +1,18 @@
 package Diccionarios;
 
 import Clase_03.Conjuntos;
-import Clase_03.conjuntosInterfaz;
+import NodosCosas.ISet;
 
 import java.util.Arrays;
 
 public class StaticMultipleDictionary implements IMultipleDictionary {
     private int[] keys;
-    private conjuntosInterfaz[] values;
+    private ISet[] values;
     private int cantValores;
 
     public StaticMultipleDictionary() {
         this.keys = new int[100];
-        this.values = new Conjuntos[100]; // CREO QUE TOMA A LOS VALORES DE UNA KEY COMO UN SET, (conjunto).
+        this.values = new Conjuntos[100]; // TOMA A LOS VALORES DE UNA KEY COMO UN SET, (conjunto).
         this.cantValores = 0;
     }
 
@@ -21,7 +21,7 @@ public class StaticMultipleDictionary implements IMultipleDictionary {
         int index = indexOfKey(key);
         if (index != -1) { // la key ya existe
             Conjuntos staticSet = new Conjuntos();
-            staticSet.Agregar(value);
+            staticSet.add(value);
             this.values[index] = staticSet;
             return;
         }
@@ -31,7 +31,7 @@ public class StaticMultipleDictionary implements IMultipleDictionary {
             this.values = Arrays.copyOf(this.values, this.values.length * 2);
         }
         this.keys[this.cantValores] = key;
-        this.values[this.cantValores].Agregar(value);
+        this.values[this.cantValores].add(value);
         this.cantValores++;
     }
 
@@ -47,37 +47,37 @@ public class StaticMultipleDictionary implements IMultipleDictionary {
         }
     }
 
-    private boolean existsValue(conjuntosInterfaz set, int value) {
-        conjuntosInterfaz copy = new Conjuntos();
+    private boolean existsValue(ISet set, int value) {
+        ISet copy = new Conjuntos();
         boolean exists = false;
-        while(!set.ConjuntoVacio()) {
-            int element = set.Elegir();
+        while(!set.isEmpty()) {
+            int element = set.choose();
             if(element == value) {
                 exists = true;
                 break;
             }
-            copy.Agregar(element);
-            set.Sacar(element);
+            copy.add(element);
+            set.remove(element);
         }
-        while(!copy.ConjuntoVacio()) {
-            int element = copy.Elegir();
-            set.Agregar(element);
-            copy.Sacar(element);
+        while(!copy.isEmpty()) {
+            int element = copy.choose();
+            set.add(element);
+            copy.remove(element);
         }
         return exists;
     }
 
     @Override
-    public conjuntosInterfaz getKeys() {
-        conjuntosInterfaz keySet = new Conjuntos();
+    public ISet getKeys() {
+        ISet keySet = new Conjuntos();
         for (int i = 0; i < this.cantValores; i++) {
-            keySet.Agregar(this.keys[i]);
+            keySet.add(this.keys[i]);
         }
         return keySet;
     }
 
     @Override
-    public conjuntosInterfaz getValues(int key) {
+    public ISet getValues(int key) {
         int index = indexOfKey(key);
         if (index != -1) {
             return this.values[index];

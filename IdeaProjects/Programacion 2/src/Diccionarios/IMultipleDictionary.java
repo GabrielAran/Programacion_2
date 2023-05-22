@@ -1,6 +1,6 @@
 package Diccionarios;
 
-import Clase_03.conjuntosInterfaz;
+import NodosCosas.ISet;
 
 /**
  * Precondicion: para usar cualquier de estos metodos la estructura debe estar inicializada.
@@ -27,7 +27,7 @@ public interface IMultipleDictionary {
     /**
      * @return conjunto con todas las claves del diccionario
      */
-    conjuntosInterfaz getKeys();
+    ISet getKeys();
 
     /**
      * Devuelve los valores asociados a una key.
@@ -35,7 +35,7 @@ public interface IMultipleDictionary {
      * @param key -
      * @return values asociados al key
      */
-    conjuntosInterfaz getValues(int key);
+    ISet getValues(int key);
 
     /**
      * @return <code>true</code> si el diccionario esta vacio, <code>false</code> en otro caso.
