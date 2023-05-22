@@ -4,20 +4,10 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("NODOS --- DINAMICAS");
+        System.out.println("PILAS --- DINAMICAS");
 
-        PilaNodosAlternativa taki = new PilaNodosAlternativa();
-
-        taki.add(8);
-        System.out.println(taki.getTop());
-        taki.add(29);
-        System.out.println(taki.getTop());
-        taki.add(9);
-        System.out.println(taki.getTop());
-        taki.remove();
-        System.out.println("Desapile el 9: " + taki.getTop());
-
-        //randomes();
+        nodosPiolas();
+        randomes();
         throw new RuntimeException("La baja bro"); // ESTO TIRA UN ERROR Y CORTA LA FUNCIÓN
     }
 
@@ -50,5 +40,20 @@ public class Main {
         System.out.println("Tiempo inicial: " + init);
         System.out.println("Tiempo final: " + end);
         System.out.println("Cuanto tiempo tardo: " + (end - init));
+    }
+
+    public static void nodosPiolas(){
+        Stack pilaPiola = new Stack();
+        System.out.println(pilaPiola.isEmpty());
+        System.out.println(pilaPiola.getTop());
+        pilaPiola.add(5);
+        System.out.println(pilaPiola.isEmpty());
+        System.out.println(pilaPiola.getTop());
+        pilaPiola.add(18);
+        System.out.println(pilaPiola.getTop());
+        pilaPiola.remove();
+        System.out.println(pilaPiola.getTop());
+        pilaPiola.remove();
+        System.out.println(pilaPiola.isEmpty());
     }
 }

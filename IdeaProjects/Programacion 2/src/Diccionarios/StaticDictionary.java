@@ -47,7 +47,7 @@ public class StaticDictionary implements IDictionary {
     }
 
     @Override
-    public conjuntosInterfaz getKeys() { // NO SE PARA QUE HACE ESTO
+    public conjuntosInterfaz getKeys() {
         conjuntosInterfaz keySet = new Conjuntos();
         for (int i = 0; i < this.cantValues; i++) {
             keySet.Agregar(this.keys[i]);

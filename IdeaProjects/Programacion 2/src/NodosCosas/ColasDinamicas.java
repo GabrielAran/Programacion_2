@@ -5,22 +5,19 @@ import Clase_03.Node;
 
 public class ColasDinamicas implements colasEstaticas {
     private Node first;
-
-    public ColasDinamicas(){
-        this.first = null;
-    }
     @Override
     public void acolar(int a) {
-        Node node = new Node(a, null);
-        if(this.first == null) {
-            this.first = node;
+        Node nodoNuevo = new Node(a, null); // genero un nodo
+        if(this.first == null) { // si no habian nodos -->
+            this.first = nodoNuevo; // --> este es el primero
             return;
         }
-        Node candidate = this.first;
-        while(candidate.getNext() != null) {
-            candidate = candidate.getNext();
+        // --> si ya habia un nodo -->
+        Node nodoAux = this.first;
+        while(nodoAux.getNext() != null) {
+            nodoAux = nodoAux.getNext();
         }
-        candidate.setNext(node);
+        nodoAux.setNext(nodoNuevo);
     }
 
     @Override

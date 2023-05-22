@@ -22,18 +22,18 @@ public class BinaryTree {
         if(this.root == null) {
             throw new RuntimeException("The tree is empty");
         }
-        BinaryTree binaryTree = new BinaryTree();
-        binaryTree.create(value);
-        this.root.setLeft(binaryTree);
+        BinaryTreeStatic binaryTreeStatic = new BinaryTreeStatic();
+        binaryTreeStatic.create(value);
+        this.root.setLeft(binaryTreeStatic);
     }
 
     public void addRight(int value) {
         if(this.root == null) {
             throw new RuntimeException("The tree is empty");
         }
-        BinaryTree binaryTree = new BinaryTree();
-        binaryTree.create(value);
-        this.root.setRight(binaryTree);
+        BinaryTreeStatic binaryTreeStatic = new BinaryTreeStatic();
+        binaryTreeStatic.create(value);
+        this.root.setRight(binaryTreeStatic);
     }
 
     public void removeLeft() {
@@ -50,14 +50,14 @@ public class BinaryTree {
         this.root.setRight(null);
     }
 
-    public BinaryTree getLeft() {
+    public BinaryTreeStatic getLeft() {
         if(this.root == null) {
             throw new RuntimeException("The tree is empty");
         }
         return this.root.getLeft();
     }
 
-    public BinaryTree getRight() {
+    public BinaryTreeStatic getRight() {
         if(this.root == null) {
             throw new RuntimeException("The tree is empty");
         }

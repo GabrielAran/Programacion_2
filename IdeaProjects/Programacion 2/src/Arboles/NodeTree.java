@@ -2,10 +2,10 @@ package Arboles;
 
 public class NodeTree {
     private int value;
-    private BinaryTree left;
-    private BinaryTree right;
+    private BinaryTreeStatic left;
+    private BinaryTreeStatic right;
 
-    public NodeTree(int value, BinaryTree left, BinaryTree right) {
+    public NodeTree(int value, BinaryTreeStatic left, BinaryTreeStatic right) {
         this.value = value;
         this.left = left;
         this.right = right;
@@ -19,19 +19,19 @@ public class NodeTree {
         this.value = value;
     }
 
-    public BinaryTree getLeft() {
+    public BinaryTreeStatic getLeft() {
         return left;
     }
 
-    public void setLeft(BinaryTree left) {
+    public void setLeft(BinaryTreeStatic left) {
         this.left = left;
     }
 
-    public BinaryTree getRight() {
+    public BinaryTreeStatic getRight() {
         return right;
     }
 
-    public void setRight(BinaryTree right) {
+    public void setRight(BinaryTreeStatic right) {
         this.right = right;
     }
 }
