@@ -14,9 +14,10 @@ public class Main {
         // ESTO PRINTEA IN-ORDER, OSEA: LEFT-ROOT-RIGHT
         printInOrder(binaryTreeStatic);
         System.out.println("El peso del Arbol es: " + pesoArbol(binaryTreeStatic));
+        System.out.println("La altura del Arbol es: " + alturaArbol(binaryTreeStatic));
     }
 
-    public static void printInOrder(BinaryTreeStatic binaryTreeStatic) {
+    public static void printInOrder(BinaryTreeStatic binaryTreeStatic) { // PRINT (LEFT - ROOT - RIGHT)
         if(binaryTreeStatic == null || binaryTreeStatic.isEmpty()) {
             return;
         }
@@ -25,16 +26,21 @@ public class Main {
         printInOrder(binaryTreeStatic.getRight());
     }
 
-    public static int pesoArbol(BinaryTreeStatic binaryTreeStatic) {
+    public static int pesoArbol(BinaryTreeStatic binaryTreeStatic) { // CANTIDAD DE NODOS DEL ARBOL
         if(binaryTreeStatic == null || binaryTreeStatic.isEmpty()) {
             return 0;
         }
         return 1 + pesoArbol(binaryTreeStatic.getLeft()) + pesoArbol(binaryTreeStatic.getRight());
     }
 
-    public static int alturaArbol(BinaryTreeStatic arbolito){
-        // ESTUDIAR RECURSIVIDAD
-        return 1;
+    public static int alturaArbol(BinaryTreeStatic arbolito){ // nop f
+        if(arbolito == null || arbolito.isEmpty()) {
+            return 0;
+        }
+        if(arbolito.getLeft() == null || arbolito.getRight() == null){
+            return 1 + alturaArbol(arbolito.getLeft()) + alturaArbol(arbolito.getRight());
+        }
+        return alturaArbol(arbolito.getLeft()) + alturaArbol(arbolito.getRight());
     }
 }
 

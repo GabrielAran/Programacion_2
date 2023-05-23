@@ -5,13 +5,13 @@ import Clase_03.Conjuntos;
 public class EjerciciosConjuntos {
     public static void main(String[] args){
         Conjuntos conj1 = new Conjuntos();
-        conj1.Agregar(7);
-        conj1.Agregar(5);
-        conj1.Agregar(2);
+        conj1.add(7);
+        conj1.add(5);
+        conj1.add(2);
 
         Conjuntos conj2 = new Conjuntos();
-        conj2.Agregar(7);
-        conj2.Agregar(5);
+        conj2.add(7);
+        conj2.add(5);
         //conj2.Agregar(9); descomentar la linea para comprobar que da falso (:
 
         System.out.println(Incluye(conj1, conj2));
@@ -21,12 +21,12 @@ public class EjerciciosConjuntos {
         //RETORNA TRUE SI LOS ELEMENTOS DE C2, ESTAN EN C1
         int valor = 0;
         boolean incluye = true;
-        while (!c2.ConjuntoVacio() && incluye) { // c2 no vacio y incluye = true
-            valor = c2.Elegir(); // --> Agarra un elemento random del c2.
+        while (!c2.isEmpty() && incluye) { // c2 no vacio y incluye = true
+            valor = c2.choose(); // --> Agarra un elemento random del c2.
             if (!c1.Pertenece(valor)) { // Si ese valor no esta en el c1, entonces incluye = FALSE.
                 incluye = false;
             } else { // Si el valor si esta en el c1, entonces lo saca del c2.
-                c2.Sacar(valor);
+                c2.remove(valor);
             }
         }
         /* ENTONCES:

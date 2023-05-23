@@ -2,36 +2,38 @@ package Arboles;
 
 public class BinaryTreeStatic implements IBinaryTree {
 
-    private final Integer[] array;
-    private final int rootIndex;
+    private final Integer[] array; // array donde se guardan los valores del BTree
+    private final int rootIndex; // pos de la raiz
     private final int MAX_CAPACITY = 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 - 1;
+
+    // TENER EN CUENTA QUE UN ARBOL BINARIO ESTA FORMADO POR ARBOLES BINARIOS XD
 
     public BinaryTreeStatic() {
         this.array = new Integer[MAX_CAPACITY];
         this.rootIndex = 0;
     }
 
-    private BinaryTreeStatic(Integer[] array, int rootIndex) {
+    private BinaryTreeStatic(Integer[] array, int rootIndex) { // constructor
         this.array = array;
         this.rootIndex = rootIndex;
     }
 
     @Override
     public void create(int value) {
-        this.array[rootIndex] = value;
+        this.array[rootIndex] = value; // pone el value en la pos del root
         for (int i = 1; i < this.array.length; i++) {
-            this.array[i] = null;
+            this.array[i] = null; // va al final del array y pone un null ¿¿¿porqué???
         }
     }
 
     @Override
-    public Integer getValue() {
+    public Integer getValue() { // DEVUELVE LA RAIZ DEL ARBOL
         return this.array[rootIndex];
     }
 
     @Override
     public boolean isEmpty() {
-        return this.array[rootIndex] == null;
+        return this.array[rootIndex] == null; // si la raiz es null entonces el arbol esta vacio
     }
 
     @Override
