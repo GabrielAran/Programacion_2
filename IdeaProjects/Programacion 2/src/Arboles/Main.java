@@ -3,13 +3,13 @@ public class Main {
     public static void main(String[] args){
         System.out.println("Esto es arboles papaaaaa");
         BinaryTreeStatic binaryTreeStatic = new BinaryTreeStatic();
-        binaryTreeStatic.create(1);
-        binaryTreeStatic.addLeft(2);
-        binaryTreeStatic.addRight(3);
+        binaryTreeStatic.create(10);
+        binaryTreeStatic.addLeft(9);
+        binaryTreeStatic.addRight(11);
 
-        binaryTreeStatic.getLeft().addLeft(4);
-        binaryTreeStatic.getLeft().addRight(5);
-        binaryTreeStatic.getLeft().getRight().addRight(6);
+        binaryTreeStatic.getLeft().addLeft(7);
+        binaryTreeStatic.getLeft().getLeft().addLeft(6);
+        binaryTreeStatic.getLeft().getLeft().getLeft().addLeft(5);
 
         // ESTO PRINTEA IN-ORDER, OSEA: LEFT-ROOT-RIGHT
         printInOrder(binaryTreeStatic);
@@ -33,14 +33,17 @@ public class Main {
         return 1 + pesoArbol(binaryTreeStatic.getLeft()) + pesoArbol(binaryTreeStatic.getRight());
     }
 
-    public static int alturaArbol(BinaryTreeStatic arbolito){ // nop f
+    public static int alturaArbol(BinaryTreeStatic arbolito){ // calcula la cantidad de niveles de un arbol binario
         if(arbolito == null || arbolito.isEmpty()) {
             return 0;
         }
-        if(arbolito.getLeft() == null || arbolito.getRight() == null){
-            return 1 + alturaArbol(arbolito.getLeft()) + alturaArbol(arbolito.getRight());
+        int altIzq = alturaArbol(arbolito.getLeft()); // altura x la izquierda
+        int altDer = alturaArbol(arbolito.getRight()); // altura x la derecha
+        if(altIzq >= altDer){ // muestro la altura mas alta xd
+            return altIzq + 1;
+        } else {
+            return altDer + 1;
         }
-        return alturaArbol(arbolito.getLeft()) + alturaArbol(arbolito.getRight());
     }
 }
 
