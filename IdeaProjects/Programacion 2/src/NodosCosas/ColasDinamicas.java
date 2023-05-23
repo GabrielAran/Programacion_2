@@ -14,7 +14,7 @@ public class ColasDinamicas implements colasEstaticas {
         }
         // --> si ya habia un nodo -->
         Node nodoAux = this.first;
-        while(nodoAux.getNext() != null) {
+        while(nodoAux.getNext() != null) { // recorre hasta agarrar el ultimo nodo asi despues le seteo de next el nuevo
             nodoAux = nodoAux.getNext();
         }
         nodoAux.setNext(nodoNuevo);
