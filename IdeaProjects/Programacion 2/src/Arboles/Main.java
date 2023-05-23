@@ -15,6 +15,15 @@ public class Main {
         printInOrder(binaryTreeStatic);
         System.out.println("El peso del Arbol es: " + pesoArbol(binaryTreeStatic));
         System.out.println("La altura del Arbol es: " + alturaArbol(binaryTreeStatic));
+
+        // DINAMICO:
+        BinaryTree arbolits = new BinaryTree();
+        arbolits.create(5);
+        arbolits.addLeft(4);
+        arbolits.addRight(6);
+        arbolits.getLeft().addLeft(2);
+        arbolits.getLeft().addRight(3);
+        printInOrderDinamic(arbolits); // funciona wow
     }
 
     public static void printInOrder(BinaryTreeStatic binaryTreeStatic) { // PRINT (LEFT - ROOT - RIGHT)
@@ -22,8 +31,17 @@ public class Main {
             return;
         }
         printInOrder(binaryTreeStatic.getLeft());
-        System.out.println(binaryTreeStatic.getValue());
+        System.out.println(binaryTreeStatic.getValueRoot());
         printInOrder(binaryTreeStatic.getRight());
+    }
+
+    public static void printInOrderDinamic(IBinaryTree binaryTree) { // PRINT (LEFT - ROOT - RIGHT)
+        if(binaryTree == null || binaryTree.isEmpty()) {
+            return;
+        }
+        printInOrderDinamic(binaryTree.getLeft());
+        System.out.println(binaryTree.getValueRoot());
+        printInOrderDinamic(binaryTree.getRight());
     }
 
     public static int pesoArbol(BinaryTreeStatic binaryTreeStatic) { // CANTIDAD DE NODOS DEL ARBOL

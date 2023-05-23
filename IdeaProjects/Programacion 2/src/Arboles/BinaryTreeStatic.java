@@ -27,7 +27,7 @@ public class BinaryTreeStatic implements IBinaryTree {
     }
 
     @Override
-    public Integer getValue() { // DEVUELVE LA RAIZ DEL ARBOL
+    public Integer getValueRoot() { // DEVUELVE LA RAIZ DEL ARBOL
         return this.array[rootIndex];
     }
 

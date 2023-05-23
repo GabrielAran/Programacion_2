@@ -19,7 +19,7 @@ public interface IBinaryTree {
      *
      * @return valor de la raiz del arbol.
      */
-    Integer getValue();
+    Integer getValueRoot();
 
     /**
      * @return <code>true</code> solo cuando el arbol esta vacio, <code>false</code> en otro caso.

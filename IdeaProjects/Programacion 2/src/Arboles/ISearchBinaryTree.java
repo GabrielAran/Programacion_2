@@ -10,7 +10,7 @@ public interface ISearchBinaryTree {
      *
      * @return valor de la raiz del arbol.
      */
-    int getValue();
+    int getRoot();
 
     /**
      * @return <code>true</code> solo cuando el arbol esta vacio, <code>false</code> en otro caso.
