@@ -4,18 +4,18 @@ public class PIla implements pilasEstatica { //AL PONER IMLEMENTS LA INTERFAZ, T
     private int[] array; // PRIVATE HACE Q NO SE PUEDAN ACCEDER DESDE AFUERA
     private int count;
 
-    public PIla(){ // INICIALIZAR LA PILA
+    public PIla(){ // INICIALIZAR LA PILA // cuando crees un objeto pila, se crea el array y el cont
         this.array = new int[100000];
         this.count = 0;  // THIS.VARIABLE SIRVE PA ACLARAR Q LA VARIABLE ES DE LA CLASE Y NO DE ARAFUE
     }
     @Override
-    public void apilar(int a){
+    public void apilar(int a){ // void no retorna nada
         this.array[this.count] = a;
-        this.count++;
+        this.count++; // cada vez q agregas, suma 1 a contador
     }
 
     public void desapilar(){
-        this.count--;
+        this.count--; // lo dejas de tener en cuenta
     }
 
     public boolean isEmpty(){
