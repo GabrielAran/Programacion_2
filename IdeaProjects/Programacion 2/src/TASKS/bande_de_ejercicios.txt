@@ -1,0 +1,929 @@
+package AYUDA;
+
+import arboles.TDAABB;
+import colas.ColasFuncion;
+import colas_con_prioridad.ColasConPrioridadFuncion;
+import conjuntos.ConjuntosFuncion;
+import diccionarios.DiccionariosMultiplesFuncion;
+import diccionarios.DiccionariosSimplesFuncion;
+import pilas.PilasFuncion;
+import tda.*;
+
+public class Metodos {
+	
+	public static class Nodo{
+		int valor;
+		Nodo sig;
+	}
+	
+	//PILAS
+	public static void PilaAPilaInversa(PilasTDA PilaOrigen, PilasTDA PilaInversa) { //PASA EL CONTENIDO DE UNA PILA A OTRA INVIRTIENDO EL ORDEN. EL RESULTADO ES UNA PILA ESTATICA.
+		while(!PilaOrigen.PilaVacia()){
+			PilaInversa.Apilar(PilaOrigen.Tope());
+			PilaOrigen.Desapilar();
+			}
+	}
+	
+	public static PilasTDA CopiaPilaAOtra(PilasTDA PilaOrigen, PilasTDA PilaResultado) { //PASA EL CONTENIDO DE UNA PILA A OTRA MANTENIENDO EL ORDEN. EL RESULTADO ES UNA PILA ESTATICA.
+		PilasTDA PilaAux = new PilasFuncion();
+			PilaAux.InicializarPila();
+			
+			PilaAPilaInversa(PilaOrigen, PilaAux);
+			PilaAPilaInversa(PilaAux, PilaResultado);
+			
+			return PilaResultado;
+		}
+	
+	public static PilasTDA CopiarPila(PilasTDA Pila) { //GENERA UNA COPIA DE UNA PILA. EL RESULTADO ES UNA PILA ESTATICA.
+		PilasTDA PilaCopia = new PilasFuncion();
+		PilasTDA PilaAux = new PilasFuncion();
+		PilaCopia.InicializarPila();
+		PilaAux.InicializarPila();
+		
+		while (!Pila.PilaVacia()) {
+			PilaAux.Apilar(Pila.Tope());
+			Pila.Desapilar();
+		}
+		
+		while(!PilaAux.PilaVacia()) {
+			Pila.Apilar(PilaAux.Tope());
+			PilaCopia.Apilar(PilaAux.Tope());
+			PilaAux.Desapilar();
+		}
+		
+		return PilaCopia;
+	}
+	
+	public static void InvertirPila(PilasTDA Pila) { //INVIERTE EL CONTENIDO DE UN PILA
+		ColasTDA cola = new ColasFuncion();
+		cola.InicializarCola();
+		
+		while(!Pila.PilaVacia()) {
+			cola.Acolar(Pila.Tope());
+			Pila.Desapilar();
+		}
+		
+		while (!cola.ColaVacia()) {
+			Pila.Apilar(cola.Primero());
+			cola.Desacolar();
+		}
+	}
+	
+	public static int ContarElementosPila(PilasTDA Pila) { //CUENTA LOS ELEMENTOS DE UNA PILA
+		int cont = 0;
+		ColasTDA cola = new ColasFuncion();
+		cola.InicializarCola();
+		PilasTDA PilaCopiada = CopiarPila(Pila);
+		while(!PilaCopiada.PilaVacia()) {
+			cont++;
+			PilaCopiada.Desapilar();
+		}
+		return cont;
+	}
+	
+	public static int SumarElementosPila(PilasTDA Pila) { //SUMA LOS ELEMENTOS DE UNA PILA
+		int sum = 0;
+		PilasTDA pilaAux = CopiarPila(Pila);
+		
+		while(!pilaAux.PilaVacia()) {
+			sum = sum + pilaAux.Tope();
+			pilaAux.Desapilar();
+		}
+		return sum;
+	}
+	
+	public static void pilasIguales (PilasTDA P1 , PilasTDA P2) { //VERIFICA SI 2 PILAS SON IGUALES EN CONTENIDO Y ORDEN
+		
+		boolean mismosElementos = true;
+		PilasTDA copiaP1 = CopiarPila(P1);
+		PilasTDA copiaP2 = CopiarPila(P2);
+		
+		while (!copiaP1.PilaVacia()) {
+			if (!(copiaP1.Tope() == copiaP2.Tope())) {
+				mismosElementos = false;
+			}
+			copiaP1.Desapilar();
+			copiaP2.Desapilar();
+		}
+		
+		mostrarIgualdad(mismosElementos);
+	}
+	
+	public static void mostrarIgualdad(boolean mismosElementos) { //PRINTEA SI LAS 2 PILAS SON IGUALES EN CONTENIDO Y ORDEN
+		if(mismosElementos)
+			System.out.println("Las pilas son iguales");
+		else
+			System.out.println("Las pilas NO son iguales");
+	}
+	
+	public static void pilasMismosElementos (PilasTDA P1 , PilasTDA P2) { //VERIFICA SI 2 PILAS TIENEN EL MISMO CONTENIDO, PUEDE HABER REPETIDOS Y NO IMPORTA EL ORDEN
+		boolean mismosElementos = true;
+		ConjuntosTDA elemP1 = new ConjuntosFuncion();
+		elemP1.InicializarConjunto();
+		PilasTDA copiaP1 = CopiarPila(P1);
+		PilasTDA copiaP2 = CopiarPila(P2);
+		
+		while (!copiaP1.PilaVacia()) {
+			elemP1.Agregar(copiaP1.Tope());
+			copiaP1.Desapilar();
+		}
+		
+		while(!copiaP2.PilaVacia()) {
+			if (!elemP1.Pertenece(copiaP2.Tope()))
+				mismosElementos = false;
+			copiaP2.Desapilar();
+		}
+		mostrarIgualdad(mismosElementos);
+	}
+	
+	public static void mostrarIgualdadContenido(boolean mismosElementos) { //PRINTEA SI 2 PILAS TIENEN EL MISMO CONTENIDO
+		if(mismosElementos)
+			System.out.println("Las pilas contienen los mismos elementos");
+		else
+			System.out.println("Las pilas NO contienen los mismos elementos");
+	}
+	
+	//COLAS
+	public void PasarCola(ColasTDA origen, ColasTDA destino) { //PASA EL CONTENIDO DE UNA COLA A OTRA MANTENIENDO EL ORDEN
+		while(!origen.ColaVacia()) {
+			destino.Acolar(origen.Primero());
+			origen.Desacolar();
+		}
+	}
+	
+	public static void InvertirCola(ColasTDA cola) { //INVIERTE EL CONTENIDO DE UNA COLA SIN CREAR NADA AUXILIAR
+		if (!cola.ColaVacia()) {
+			int dato = cola.Primero();
+			cola.Desacolar();
+			InvertirCola(cola);
+			cola.Acolar(dato);
+		}
+	}
+	
+	public void InvertirColaConPila(ColasTDA cola) { //INVIERTE UNA COLA USANDO UNA PILA AUXILIAR
+		PilasTDA pila = new PilasFuncion();
+		pila.InicializarPila();
+		
+		while(!cola.ColaVacia()) {
+			int n = cola.Primero();
+			cola.Desacolar();
+			pila.Apilar(n);
+		}
+		while(!pila.PilaVacia()) {
+			int m = pila.Tope();
+			pila.Desapilar();
+			cola.Acolar(m);
+		}
+	}
+	
+	public boolean CompararCapicua(ColasTDA cola) { //VERIFICA SI UNA COLA ES CAPICUA
+		
+		PilasTDA pila = new PilasFuncion();
+		pila.InicializarPila();
+		
+		ColasTDA colaAux = new ColasFuncion();
+		colaAux.InicializarCola();
+		
+		while(!cola.ColaVacia()) {
+			int n = cola.Primero();
+			pila.Apilar(n);
+			colaAux.Acolar(n);
+			cola.Desacolar();
+		}
+		
+		boolean capicua = true;
+		
+		while(!colaAux.ColaVacia() && !pila.PilaVacia()) {
+			int m = colaAux.Primero();
+			int j = pila.Tope();
+			colaAux.Desacolar();
+			pila.Desapilar();
+			if(m != j) {
+				capicua = false;
+			}
+		}
+		return capicua;
+	}
+	
+	public boolean ColasInversas(ColasTDA cola1, ColasTDA cola2) { //VERIFICA SI 2 COLAS SON INVERSAS
+		InvertirCola(cola2);
+		boolean inversas = true;
+		while (!cola1.ColaVacia() && !cola2.ColaVacia() && inversas == true) {
+			int a = cola1.Primero();
+			int b = cola2.Primero();
+			if (a != b) {
+				inversas = false;
+			}
+		}
+		return inversas;
+	}
+	
+	public static ColasTDA CopiarCola(ColasTDA Cola) { //GENERA UNA COPIA DE UNA COLA.
+		ColasTDA ColaCopia = new ColasFuncion();
+		ColasTDA ColaAux = new ColasFuncion();
+		ColaCopia.InicializarCola();
+		ColaAux.InicializarCola();
+		
+		while (!Cola.ColaVacia()) {
+			ColaAux.Acolar(Cola.Primero());
+			Cola.Desacolar();
+		}
+		
+		while(!ColaAux.ColaVacia()) {
+			Cola.Acolar(ColaAux.Primero());
+			ColaCopia.Acolar(ColaAux.Primero());
+			ColaAux.Desacolar();
+		}
+		
+		return ColaCopia;
+	}
+	
+	//COLAS CON PRIORIDAD
+	public void Colap2Colas(ColasConPrioridadTDA origen, ColasTDA valores, ColasTDA prioridades) { //CONVIERTE UNA COLA CON PRIORIDAD EN 2 COLAS, UNA DE VALORES Y UNA DE PRIORIDADES
+		while(!origen.ColaVacia()) {
+			valores.Acolar(origen.Primero());
+			prioridades.Acolar(origen.Prioridad());
+			origen.Desacolar();
+		}
+	}
+
+	public static void mostrarColaPrioridad(ColasConPrioridadTDA X) { //PRINTEA EL CONTENIDO DE UNA COLA CON PRIORIDAD EN EL FORMATO "ELEMENTO(PRIORIDAD:)"
+		ColasConPrioridadTDA copia = copiarColaPrioridad(X);
+		while(!copia.ColaVacia()) {
+			System.out.print(copia.Primero()+"(Prioridad: "+ copia.Prioridad() + ") ");
+			copia.Desacolar();
+		}
+		System.out.println();
+	}
+	
+	public static ColasConPrioridadTDA copiarColaPrioridad(ColasConPrioridadTDA original) { //GENERA UNA COPIA DE UNA COLA CON PRIORIDAD
+		ColasConPrioridadTDA copia = new ColasConPrioridadFuncion();
+		ColasConPrioridadTDA aux = new ColasConPrioridadFuncion();
+		copia.InicializarCola();
+		aux.InicializarCola();
+		
+		while(!original.ColaVacia()) {
+			aux.AcolarConPrioridad(original.Primero(), original.Prioridad());
+			original.Desacolar();
+		}
+		
+		while(!aux.ColaVacia()) {
+			copia.AcolarConPrioridad(aux.Primero(), aux.Prioridad());
+			original.AcolarConPrioridad(aux.Primero(), aux.Prioridad());
+			aux.Desacolar();
+		}
+		return copia;
+	}
+	
+	//CONJUNTOS
+	public static ConjuntosTDA copiaC (ConjuntosTDA original) { //GENERA UNA COPIA DE UN CONJUNTO
+		ConjuntosTDA copia = new ConjuntosFuncion();
+		ConjuntosTDA aux = new ConjuntosFuncion();
+		copia.InicializarConjunto();
+		aux.InicializarConjunto();
+		
+		while(!original.ConjuntoVacio()) {
+			int num = original.Elegir();
+			aux.Agregar(num);
+			original.Sacar(num);
+		}
+		
+		while(!aux.ConjuntoVacio()) {
+			int num = aux.Elegir();
+			copia.Agregar(num);
+			original.Agregar(num);
+			aux.Sacar(num);
+		}
+		return copia;
+	}
+	
+	public static void mostrarConjunto(ConjuntosTDA or) { //PRINTEA UN CONJUNTO
+		ConjuntosTDA copia = copiaC(or);
+		
+		System.out.print("( ");
+		while (!copia.ConjuntoVacio())
+		{
+			int num = copia.Elegir();
+			System.out.print(num);
+			copia.Sacar(num);
+			if(!copia.ConjuntoVacio())
+				System.out.print(", ");
+		}
+		System.out.println(" )");
+	}
+	
+	public static boolean ConjEnConj(ConjuntosTDA c1, ConjuntosTDA c2) {//VERIFICA SI UN CONJUNTO ESTA COMPRENDIDO EN OTRO
+		boolean incluye = true;
+		ConjuntosTDA aux = copiaC(c2);
+		while(!aux.ConjuntoVacio() && incluye) {
+			int x = aux.Elegir();
+			if (!c1.Pertenece(x)) {
+				incluye = false;
+			}
+			else {
+				aux.Sacar(x);
+			}
+		}
+		return incluye;
+	}
+	
+	
+	
+	//DICCIONARIOS SIMPLES
+	public static void mostrarDicSimple(DiccionariosSimpleTDA dic) { //PRINTEA EL CONTENIDO DE UN DICCIONARIO MULTIPLE
+		ConjuntosTDA claves = dic.Claves();
+		while(!claves.ConjuntoVacio()) {
+			int clave = claves.Elegir();
+			int valor = dic.Recuperar(clave);
+			System.out.println("( " + clave + " ):" + " [ "+ valor+ " ] ");
+			claves.Sacar(clave);		
+		}	
+	}
+	
+	//DICCIONARIOS MULTIPLES
+	public static DiccionariosMultiplesTDA twoDicMul2oneDicMul (DiccionariosMultiplesTDA D1, DiccionariosMultiplesTDA D2) { //JUNTA EL CONTENIDO DE 2 DICCIONARIOS MULTIPLES
+		DiccionariosMultiplesTDA dicResp = new DiccionariosMultiplesFuncion();
+		dicResp.InicializarDiccionarios();
+		ConjuntosTDA clavesD1 = D1.Claves();
+		ConjuntosTDA clavesD2 = D2.Claves();
+		
+		while (!clavesD1.ConjuntoVacio()) {
+			int clave = clavesD1.Elegir();
+			clavesD1.Sacar(clave);
+			ConjuntosTDA valores = D1.Recuperar(clave);
+			while(!valores.ConjuntoVacio()) {
+				int valor = valores.Elegir();
+				valores.Sacar(valor);
+				dicResp.Agregar(clave, valor);
+			}
+		}
+		while (!clavesD2.ConjuntoVacio()) {
+			int clave = clavesD2.Elegir();
+			clavesD2.Sacar(clave);
+			ConjuntosTDA valores = D2.Recuperar(clave);
+			while(!valores.ConjuntoVacio()) {
+				int valor = valores.Elegir();
+				valores.Sacar(valor);
+				dicResp.Agregar(clave, valor);
+			}
+		}
+		return dicResp;	
+	}
+	
+	public static void mostrarDicMultiple(DiccionariosMultiplesTDA dic) { //PRINTEA EL CONTENIDO DE UN DICCIONARIO MULTIPLE
+		ConjuntosTDA claves = dic.Claves();
+		while(!claves.ConjuntoVacio()) {
+			int clave = claves.Elegir();
+			ConjuntosTDA valores = dic.Recuperar(clave);
+			System.out.print("( " + clave + " ):" + " [ ");
+			while(!valores.ConjuntoVacio()) {
+				int valor = valores.Elegir();
+				System.out.print(valor);	
+				valores.Sacar(valor);	
+				if (!valores.ConjuntoVacio())
+					System.out.print(", ");		
+			}
+			System.out.println(" ]");
+			claves.Sacar(clave);		
+		}	
+	}
+	
+	//ARBOLES
+	public void PreOrden (TDAABB a) { //RECORRE EL ARBOL EN MANERA PRE-ORDEN Y PRINTEA SU CONTENIDO
+		if (!a.ArbolVacio()) {
+			System.out.println(a.Raiz());
+			PreOrden(a.HijoIzq());
+			PreOrden(a.HijoDer());
+		}
+	}
+	
+	public void InOrden (TDAABB a) { //RECORRE EL ARBOL DE MANERA IN-ORDEN Y PRINTEA SU CONTENIDO
+		if (!a.ArbolVacio()) {
+			InOrden(a.HijoIzq());
+			System.out.println(a.Raiz());
+			InOrden(a.HijoDer());
+		}
+	}
+	
+	public void PostOrden (TDAABB a) { //RECORRE EL ARBOL DE MANERA POST-ORDEN Y PRINTEA SU CONTENIDO
+		if (!a.ArbolVacio()) {
+			PostOrden(a.HijoIzq());
+			PostOrden(a.HijoDer());
+			System.out.println(a.Raiz());
+		}
+	}
+	
+	public int Contar(TDAABB a) { //CUENTA LA CANTIDAD DE NODOS DE UN ARBOL BINARIO DE BUSQUEDA
+		if (a.ArbolVacio()) {
+			return 0;
+		}
+		else {
+			return(1 + Contar(a.HijoIzq()) + Contar(a.HijoDer()));
+		}
+	}
+	
+	public int CalcularProfundidad (TDAABB a, int x) {//CALCULA LA PROFUNDIDAD DE UN ABB
+		if (a.ArbolVacio()) {
+			return 0;
+		}
+		else if (a.Raiz()== x) {
+			return 0;
+		}
+		else if (a.Raiz() > x) {
+			return(1 + this.CalcularProfundidad(a.HijoIzq(), x));
+		}
+		else {
+			return(1 + this.CalcularProfundidad(a.HijoDer(), x));
+		}
+	}
+	
+	public boolean ExisteEnABB(TDAABB a, int x) { //VERIFICA SI UN ELEMENTO FORMA PARTE DE UN ABB 
+		if (a.ArbolVacio()) {
+			return false;
+		}
+		else if (a.Raiz()== x) {
+			return true;
+		}
+		else if (a.Raiz() > x) {
+			return this.ExisteEnABB(a.HijoIzq(), x);
+		}
+		else {
+			return this.ExisteEnABB(a.HijoDer(), x);
+		}
+	}
+	
+	public boolean EsHojaABB(TDAABB a, int x) { //VERIFICA SI UN ELEMENTO ES UNA HOJA DEL ABB
+		if (a.ArbolVacio()) {
+			return false;
+		}
+		else if (a.Raiz()== x) {
+			if (a.HijoDer() == null && a.HijoIzq() == null)
+				return true;
+			else
+				return false;
+		}
+		else if (a.Raiz() > x) {
+			return this.EsHojaABB(a.HijoIzq(), x);
+		}
+		else {
+			return this.EsHojaABB(a.HijoDer(), x);
+		}
+	}
+	
+	public ConjuntosTDA NodosParesEnABB (TDAABB a) { //EXTRAE TODOS LOS VALORES PARES DE UN ABB Y LOS DEVUELVE EN MANERA DE CONJUNTO
+		ConjuntosTDA r = new ConjuntosFuncion();
+		r.InicializarConjunto();
+		
+		if (!a.ArbolVacio()) {
+			if (a.Raiz() % 2 == 0) {
+				r.Agregar(a.Raiz());
+			}
+			ConjuntosTDA rI = NodosParesEnABB(a.HijoIzq());
+			ConjuntosTDA rD = NodosParesEnABB(a.HijoDer());
+			while (!rI.ConjuntoVacio()) {
+				int x = rI.Elegir();
+				r.Agregar(x);
+				rI.Sacar(x);
+			}
+			while (!rD.ConjuntoVacio()) {
+				int x = rD.Elegir();
+				r.Agregar(x);
+				rD.Sacar(x);
+			}
+		}
+		return r;
+	}
+	
+	public ConjuntosTDA NodosImparesEnABB (TDAABB a) { //EXTRAE TODOS LOS VALORES IMPARES DE UN ABB Y LOS DEVUELVE EN MANERA DE CONJUNTO
+		ConjuntosTDA r = new ConjuntosFuncion();
+		r.InicializarConjunto();
+		
+		if (!a.ArbolVacio()) {
+			if (a.Raiz() % 2 != 0) {
+				r.Agregar(a.Raiz());
+			}
+			ConjuntosTDA rI = NodosImparesEnABB(a.HijoIzq());
+			ConjuntosTDA rD = NodosImparesEnABB(a.HijoDer());
+			while (!rI.ConjuntoVacio()) {
+				int x = rI.Elegir();
+				r.Agregar(x);
+				rI.Sacar(x);
+			}
+			while (!rD.ConjuntoVacio()) {
+				int x = rD.Elegir();
+				r.Agregar(x);
+				rD.Sacar(x);
+			}
+		}
+		return r;
+	}
+	
+	public static int MenorElementoABB(TDAABB a) { //DEVUELVE EL ELEMENTO MENOR DE UN ABB
+		if(a.HijoIzq().ArbolVacio())
+			return a.Raiz();
+		else
+			return MenorElementoABB(a.HijoIzq());
+	}
+	
+	public static int MayorElementoABB(TDAABB a) { //DEVUELVE EL ELEMENTO MAYOR DE UN ABB
+		if(a.HijoDer().ArbolVacio())
+			return a.Raiz();
+		else
+			return MayorElementoABB(a.HijoDer());
+	}
+	
+	public static int SumaElementosABB(TDAABB a) { //SUMA TODOS LOS ELEMENTOS DE UN ABB
+		if(a.ArbolVacio())
+			return 0;
+		else
+			return a.Raiz() + SumaElementosABB(a.HijoIzq()) + SumaElementosABB(a.HijoDer());	
+	}
+	
+	public static int CantHojasABB(TDAABB a) { //DEVUELVE LA CANTIDAD DE HOJAS DE UN ABB
+		if(a.ArbolVacio())
+			return 0;
+		else {
+			if(a.HijoIzq().ArbolVacio() && a.HijoDer().ArbolVacio())
+				return 1 + CantHojasABB(a.HijoIzq()) + CantHojasABB(a.HijoDer());
+			else
+				return 0 + CantHojasABB(a.HijoIzq()) + CantHojasABB(a.HijoDer());
+		}
+	}
+	
+	public static int AlturaABB(TDAABB a) {//DEVUELVE LA ALTURA DE UN ABB (VERIFICA TODAS LAS ALTURAS, AGARRA LA MAS GRANDE Y LE SUMA 1 POR LA RAIZ ORIGINAL
+		if (a.ArbolVacio())
+			return -1;
+		else {
+			int altIzq = AlturaABB(a.HijoIzq());
+			int altDer = AlturaABB(a.HijoDer());
+			
+			if(altIzq > altDer)
+				return (altIzq + 1);
+			else
+				return (altDer + 1);
+		}	
+	}
+	
+	public static boolean MismaFormaABB(TDAABB a1, TDAABB a2) { //VERIFICA SI 2 ABBs TIENEN LA MISMA FORMA
+		if(a1.ArbolVacio() && a2.ArbolVacio())
+			return true;
+		else if(a1.ArbolVacio() || a2.ArbolVacio())
+			return false;
+		else {
+			return MismaFormaABB(a1.HijoIzq(), a2.HijoIzq()) && MismaFormaABB(a1.HijoDer(), a2.HijoDer());
+		}
+	}
+	
+	public static boolean IgualesABB(TDAABB a1, TDAABB a2) { //VERIFICA SI 2 ABBs SON IGUALES, CON MISMA FORMA Y VALORES EN SUS RAICES
+		if(a1.ArbolVacio() && a2.ArbolVacio())
+			return true;
+		else if(a1.ArbolVacio() || a2.ArbolVacio() || a1.Raiz() != a2.Raiz())
+			return false;
+		else {
+			return IgualesABB(a1.HijoIzq(), a2.HijoIzq()) && IgualesABB(a1.HijoDer(), a2.HijoDer());
+		}
+	}
+	
+	public static ConjuntosTDA ValoresMayoresAKABB(TDAABB a, int k) { //TOMA TODOS LOS VALORES MAYORES A K, SIENDO K UN PARAMETRO
+		ConjuntosTDA c = new ConjuntosFuncion();
+		c.InicializarConjunto();
+		if(!a.ArbolVacio()) {
+			if(a.Raiz() > k)
+				c.Agregar(a.Raiz());
+			ConjuntosTDA cI = ValoresMayoresAKABB(a.HijoIzq(), k);
+			ConjuntosTDA cD = ValoresMayoresAKABB(a.HijoDer(), k);
+			while(!cI.ConjuntoVacio()) {
+				int x = cI.Elegir();
+				c.Agregar(x);
+				cI.Sacar(x);
+			}
+			while(!cD.ConjuntoVacio()) {
+				int x = cD.Elegir();
+				c.Agregar(x);
+				cD.Sacar(x);
+			}
+		}
+		return c;
+	}
+	
+	public static ConjuntosTDA ValoresMenoresAKABB(TDAABB a, int k) { //TOMA TODOS LOS VALORES MENORES A K, SIENDO K UN PARAMETRO
+		ConjuntosTDA c = new ConjuntosFuncion();
+		c.InicializarConjunto();
+		if(!a.ArbolVacio()) {
+			if(a.Raiz() < k)
+				c.Agregar(a.Raiz());
+			ConjuntosTDA cI = ValoresMayoresAKABB(a.HijoIzq(), k);
+			ConjuntosTDA cD = ValoresMayoresAKABB(a.HijoDer(), k);
+			while(!cI.ConjuntoVacio()) {
+				int x = cI.Elegir();
+				c.Agregar(x);
+				cI.Sacar(x);
+			}
+			while(!cD.ConjuntoVacio()) {
+				int x = cD.Elegir();
+				c.Agregar(x);
+				cD.Sacar(x);
+			}
+		}
+		return c;
+	}
+	
+	public static int ProfundidadElementoABB(TDAABB a, int x) { //DEVUELVE LA PROFUNDIDAD DE UN ELEMENTO X, SIENDO X UN PARAMETRO
+		if (a.ArbolVacio())
+			return 0;
+		else{
+			if( a.Raiz() == x)
+				return 1;
+			else if ( x < a.Raiz())
+				return 1 + ProfundidadElementoABB(a.HijoIzq(), x);
+			else
+				return 1 + ProfundidadElementoABB(a.HijoDer(), x);
+		}
+			
+	}
+	
+	public static int ContarElementosEnNivelABB(TDAABB a, int x) { //DEVUELVE LA CANTIDAD DE ELEMENTOS EN UN NIVEL DEL ABB QUE ES PASADO POR PARAMETRO
+		if (a.ArbolVacio())
+			return 0;
+		else if (x == 0)
+			return 1;
+		else
+			return (0 + ContarElementosEnNivelABB(a.HijoIzq(), x-1) + ContarElementosEnNivelABB(a.HijoDer(), x-1));
+	}
+	
+	public int SumaSubarboles(TDAABB a, int k) { //SUMA LOS ELEMENTOS DEL SUBARBOL IZQ Y LES RESTA LA SUMATORIA DEL SUBARBOL DER DE UN ABB
+		if(a.ArbolVacio())
+			return 0;
+		else if(a.Raiz() < k)
+			return SumaSubarboles(a.HijoIzq(), k);
+		else if(a.Raiz() > k)
+			return SumaSubarboles(a.HijoDer(), k);
+		else 
+			return SumaElementosABB(a.HijoIzq()) - SumaElementosABB(a.HijoDer());
+	}
+	
+	public int CantAscendentes(TDAABB a, int k) { //DA COMO RESULTADO LA CANTIDAD DE NODOS ASCENDENTES A UN NODO ESPECIFICO EN UN ABB. ES IGUAL A LA PROFUNDIDAD DEL NODO EN CUESTION
+		if(a.ArbolVacio())
+			return 0;
+		else if(a.Raiz() > k)
+			return 1 + CantAscendentes(a.HijoIzq(), k);
+		else if(a.Raiz() < k)
+			return 1 + CantAscendentes(a.HijoDer(), k);
+		else 
+			return 0;
+	}
+	
+	public int CantDescendentes(TDAABB a, int k) { //DA COMO RESULTADO LA CANTIDAD DE NODOS DESCENDIENTES A UN NODO ESPECIFICO EN UN ABB
+		if (a.ArbolVacio())
+			return 0;
+		else if(a.Raiz() > k)
+			return CantDescendentes(a.HijoIzq(), k);
+		else if(a.Raiz() < k)
+			return CantDescendentes(a.HijoDer(), k);
+		else 
+			return Contar(a);
+	}
+	
+	//GRAFOS
+	public static void MostrarGrafo(TDAGrafos a) { //PRINTEA UN GRAFO ENTERO
+		ConjuntosTDA V1 = a.Vertices();
+		while (!V1.ConjuntoVacio()) {
+			int x1 = V1.Elegir();
+			V1.Sacar(x1);
+			ConjuntosTDA V2 = a.Vertices();
+			while (!V2.ConjuntoVacio()) {
+				int x2 = V2.Elegir();
+				V2.Sacar(x2);
+				if (a.ExisteArista(x1,x2))
+					System.out.print(x1+"->("+a.PesoArista(x1,x2)+")->"+x2+" ");
+				else
+					System.out.print(x1+"->(0)->"+x2+" ");
+			}
+			System.out.println("");
+		}
+	}
+	
+	public static ConjuntosTDA VecinosGrafos(TDAGrafos g, int v) { //DEVUELVE UN CONJUNTO CON LOS GRAFOS VECINOS A UN GRAFO G, SIENDO VECINOS LOS VERTICES A LOS QUE ESTE CONECTADO UN VERTICE V
+		ConjuntosTDA vertices = g.Vertices();
+		ConjuntosTDA vecinos = new ConjuntosFuncion();
+		vecinos.InicializarConjunto();
+		
+		while(!vertices.ConjuntoVacio()) {
+			int vert = vertices.Elegir();
+			vertices.Sacar(vert);
+			if(g.ExisteArista(v, vert))
+				vecinos.Agregar(vert);
+		}
+		return vecinos;
+	}
+	
+	public static int AristaSalienteMayorPeso(TDAGrafos g, int v) { //DEVUELVE EL PESO DE LA ARISTA DE MAYOR PESO DE UN VERTICE V
+		int mayorPeso = 0;
+		int peso = 0;
+		ConjuntosTDA vertices = g.Vertices();
+		while (!vertices.ConjuntoVacio()) {
+			int vert = vertices.Elegir();
+			if(g.ExisteArista(v, vert)) {
+				peso = g.PesoArista(v, vert);
+				if (peso > mayorPeso)
+					mayorPeso = peso;
+			}
+			vertices.Sacar(vert);
+		}
+		return mayorPeso;
+	}
+	
+	public static int AristaSalienteMenorPeso(TDAGrafos g, int v) { //DEVUELVE EL PESO DE LA ARISTA DE MENOR PESO DE UN VERTICE V
+		int menorPeso = 0;
+		int peso = 0;
+		ConjuntosTDA vertices = g.Vertices();
+		while (!vertices.ConjuntoVacio()) {
+			int vert = vertices.Elegir();
+			if(g.ExisteArista(v, vert)) {
+				peso = g.PesoArista(v, vert);
+				if (peso < menorPeso)
+					menorPeso = peso;
+			}
+			vertices.Sacar(vert);
+		}
+		return menorPeso;
+	}
+	
+	public static ConjuntosTDA GrafosPredecesores(TDAGrafos g, int v1) { //DEVUELVE TODOS LOS VERTICES PREDECESORES A V, SIENDO PREDECESORES LOS VERTICES QUE TIENEN UNA ARISTA QUE TERMINA EN V
+		ConjuntosTDA vertices = g.Vertices();
+		ConjuntosTDA predecesores = new ConjuntosFuncion();
+		predecesores.InicializarConjunto();
+		while(!vertices.ConjuntoVacio()) {
+			int v2 = vertices.Elegir();
+			vertices.Sacar(v2);
+			if(g.ExisteArista(v2, v1))
+				predecesores.Agregar(v2);
+		}
+		return predecesores;
+	}
+	
+	public static ConjuntosTDA VerticesAislados(TDAGrafos g) { //DEVUELVE UN CONJUNTO CON TODOS LOS VERTICES AISLADOS DE UN GRAFO G, SIENDO AISLADOS LOS VERTICES QUE NO TIENEN ARISTAS ENTRANTES O SALIENTES
+		ConjuntosTDA aislados = g.Vertices();
+		ConjuntosTDA vertices = g.Vertices();
+		while(!vertices.ConjuntoVacio()) {
+			ConjuntosTDA verticesAux = g.Vertices();
+			int v1 = vertices.Elegir();
+			vertices.Sacar(v1);
+			while(!verticesAux.ConjuntoVacio()) {
+				int v2 = verticesAux.Elegir();
+				verticesAux.Sacar(v2);
+				if(g.ExisteArista(v1, v2) || g.ExisteArista(v2, v1)) 
+					aislados.Sacar(v1);
+			}
+		}
+		return aislados;		
+	}
+	
+	public static int GradoVertice(TDAGrafos g, int v) { //DEVUELVE EL GRADO DE UN VERTICE, SIENDO EL GRADO LA DIFERENCIA ENTRE ARISTAS ENTRANTES Y ARISTAS SALIENTES
+		////ARISTAS SALIENTES
+		int arSalientes = 0;
+		ConjuntosTDA vecinosVert = VecinosGrafos(g, v);
+		while(!vecinosVert.ConjuntoVacio()) {
+			vecinosVert.Sacar(vecinosVert.Elegir());
+			arSalientes++;
+		}
+		//ARISTAS ENTRANTES
+		int arEntrantes = 0;
+		ConjuntosTDA vertices = g.Vertices();
+		while(!vertices.ConjuntoVacio()) {
+			int aux = vertices.Elegir();
+			vertices.Sacar(aux);
+			if(g.ExisteArista(aux, v))
+				arEntrantes++;
+		}
+		return arSalientes - arEntrantes;
+	}
+	
+	public static ConjuntosTDA VerticesPuentes(TDAGrafos g, int v1, int v2) { //DEVUELVE UN CONJUNTO CON TODOS LOS VERTICES PUENTES ENTRE V1 Y V2, SIENDO PUENTES LOS VERTICES ENTRE V1 Y V2
+		ConjuntosTDA vecinosV1 = VecinosGrafos(g, v1);
+		ConjuntosTDA puentes = new ConjuntosFuncion();
+		puentes.InicializarConjunto();
+		while(!vecinosV1.ConjuntoVacio()) {
+			int puente = vecinosV1.Elegir();
+			vecinosV1.Sacar(puente);
+			if(g.ExisteArista(v1, puente) && g.ExisteArista(puente, v2))
+				puentes.Agregar(puente);
+		}
+		return puentes;
+	}
+
+	public static ConjuntosTDA AdyacentesDobles(TDAGrafos g, int v1) { //DEVUELVE UN CONJUNTO CON LOS ADYACENTES DOBLES A V, SIENDO ADYACENTES DOBLES LOS VERTICES QUE TIENEN UN IDA Y VUELTA CON OTRO VERTICE
+		ConjuntosTDA vecinos = VecinosGrafos(g, v1);
+		ConjuntosTDA adyDobles = new ConjuntosFuncion();
+		adyDobles.InicializarConjunto();
+		while(!vecinos.ConjuntoVacio()) {
+			int aux = vecinos.Elegir();
+			vecinos.Sacar(aux);
+			if(g.ExisteArista(aux, v1)) {
+				adyDobles.Agregar(aux);
+			}
+		}
+		return adyDobles;
+	}
+	
+	public static int SumatoriaAristas(TDAGrafos g, int v) { //DEVUELVE LA SUMATORIA DE TODAS LAS ARISTAS SALIENTES DE UN VERTICE PASADO COMO PARAMETRO
+		int sumatoria = 0;
+		ConjuntosTDA vertices = g.Vertices();
+		while(!vertices.ConjuntoVacio()) {
+			int vert = vertices.Elegir();
+			if(g.ExisteArista(v, vert))
+				sumatoria = sumatoria + g.PesoArista(v, vert);
+		}
+		return sumatoria;
+	}
+	
+	public static DiccionariosSimpleTDA Grafo2DicSumaAristas(TDAGrafos g) { //CONVIERTE UN GRAFO EN UN DIC SIMPLE EN EL QUE LAS CLAVES SON LOS VERTICES Y LOS VALORES LA SUMATORIA DE SUS ARISTAS SALIENTES
+		ConjuntosTDA nodos = g.Vertices();
+		DiccionariosSimpleTDA Resultado = new DiccionariosSimplesFuncion();
+		Resultado.InicializarDiccionarios();
+		while(!nodos.ConjuntoVacio()) {
+			int nodo = nodos.Elegir();
+			nodos.Sacar(nodo);
+			Resultado.Agregar(nodo, SumatoriaAristas(g, nodo));
+		}
+		return Resultado;
+	}
+	
+	//VARIOS
+	public static DiccionariosMultiplesTDA Prioridad2DicElemento (ColasConPrioridadTDA colaprio) { //CREA UN DICCIONARIO MULTIPLE CON LOS ELEMENTOS DE UNA LISTA CP. USANDO LOS ELEMENTOS COMO CLAVES Y SUS PRIORIDADES COMO VALORES
+		ColasConPrioridadTDA copia = copiarColaPrioridad(colaprio);
+		DiccionariosMultiplesTDA dicColaPrio = new DiccionariosMultiplesFuncion();
+		dicColaPrio.InicializarDiccionarios();
+		
+		while (!copia.ColaVacia()) {
+			dicColaPrio.Agregar(copia.Primero(), copia.Prioridad());
+			copia.Desacolar();
+		}
+		return dicColaPrio;
+	}
+	
+	public static DiccionariosMultiplesTDA Prioridad2DicPrioridad (ColasConPrioridadTDA colaprio) {//CREA UN DICCIONARIO MULTIPLE CON LOS ELEMENTOS DE UNA LISTA CP. USANDO LAS PRIORIDADES COMO CLAVES Y LOS ELEMENTOS COMO VALORES
+		ColasConPrioridadTDA copia = copiarColaPrioridad(colaprio);
+		DiccionariosMultiplesTDA dicColaPrio = new DiccionariosMultiplesFuncion();
+		dicColaPrio.InicializarDiccionarios();
+		
+		while (!copia.ColaVacia()) {
+			dicColaPrio.Agregar(copia.Primero(), copia.Prioridad());
+			copia.Desacolar();
+		}
+		return dicColaPrio;
+	}
+	
+	public static Nodo concatenarIterativa(Nodo origen1, Nodo origen2) { //CONCATENA 2 ESTRUCTURAS DINAMICAS UNA DESPUES DE LA OTRA, CONVIRTIENDOLAS EN UNA MISMA
+		Nodo viajero = new Nodo();
+		viajero = origen1;
+		while(viajero.sig != null)
+			viajero = viajero.sig;
+		viajero.sig = origen2;
+		return origen1;
+	}
+	
+	public static Nodo agregarDelante(Nodo origen, int X) { //AGREGA UN NUEVO ELEMENTO A UNA LISTA DINAMICA A LA IZQUIERDA DE LA LISTA, ES DECIR, AL INICIO
+		Nodo nuevo = new Nodo();
+		nuevo.valor = X;
+		nuevo.sig = origen;
+		origen = nuevo;
+		
+		return origen;
+		
+	}
+	
+	public static Nodo agregarDetras(Nodo origen, int X) { //AGREGA UN NUEVO ELEMENTO A UNA LISTA DINAMICA A LA DERECHA DE LA LISTA, ES DECIR, AL FINAL
+		Nodo nuevo = new Nodo();
+		nuevo.valor = X;
+		nuevo.sig = null;
+		if (origen == null) {
+			origen = nuevo;
+		}
+		else {
+			Nodo viajero = new Nodo();
+			viajero = origen;
+			while(viajero.sig != null)
+				viajero = viajero.sig;
+			viajero.sig = nuevo;
+		}
+		return origen;
+	}
+	
+	//MAIN
+	
+	public static void main (String[] args) {
+		
+		DiccionariosSimpleTDA dic = new DiccionariosSimplesFuncion();
+		dic.InicializarDiccionarios();
+		
+		dic.Agregar(1, 10);
+		dic.Agregar(1, 7);
+		dic.Agregar(1, 5);
+		dic.Agregar(2, 10);
+		dic.Agregar(3, 57);
+		
+		mostrarDicSimple(dic);
+		
+	}
+}
