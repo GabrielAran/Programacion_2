@@ -29,6 +29,9 @@ public class Colas implements colasEstaticas{
 
     @Override
     public int getPrimero() {
+        if (this.count == 0){
+            return -1;
+        }
         return this.array[0];
     }
 }
