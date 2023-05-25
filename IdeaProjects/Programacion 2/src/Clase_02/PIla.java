@@ -15,7 +15,11 @@ public class PIla implements pilasEstatica { //AL PONER IMLEMENTS LA INTERFAZ, T
     }
 
     public void desapilar(){
-        this.count--; // lo dejas de tener en cuenta
+        if (this.count == 0){
+            System.out.println("No podes desapilar si ya esta vacio");
+        } else {
+            this.count--; // lo dejas de tener en cuenta
+        }
     }
 
     public boolean isEmpty(){
@@ -23,6 +27,11 @@ public class PIla implements pilasEstatica { //AL PONER IMLEMENTS LA INTERFAZ, T
     }
 
     public int getTope(){
-        return this.array[count - 1]; //ME DA EL ULTIMO VALOR DE LA PILA
+        if (this.count == 0){
+            System.out.println("No podes agarrar tope si esta vacia");
+            return -1;
+        } else {
+            return this.array[count - 1]; //ME DA EL ULTIMO VALOR DE LA PILA
+        }
     }
 }
