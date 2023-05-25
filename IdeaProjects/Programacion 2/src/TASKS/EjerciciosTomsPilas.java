@@ -3,7 +3,7 @@ package TASKS;
 import Clase_02.PIla;
 import Clase_03.Conjuntos;
 
-public class EjerciciosToms { // aca van todos los ejercicios del coso de toms
+public class EjerciciosTomsPilas { // aca van todos los ejercicios del coso de toms
     public static void main(String[] args){
         //PILAS
         invertirPila(crearPilas());
