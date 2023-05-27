@@ -326,8 +326,7 @@ public class Metodos {
 		}
 		return incluye;
 	}
-	
-	
+
 	
 	//DICCIONARIOS SIMPLES
 	public static void mostrarDicSimple(DiccionariosSimpleTDA dic) { //PRINTEA EL CONTENIDO DE UN DICCIONARIO MULTIPLE
