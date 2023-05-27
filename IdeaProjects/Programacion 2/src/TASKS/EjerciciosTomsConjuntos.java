@@ -66,7 +66,7 @@ public class EjerciciosTomsConjuntos {
     }
     public static boolean setEnSet(Set total, Set parteDelTotal) { //VERIFICA SI UN CONJUNTO ESTA COMPRENDIDO EN OTRO
         boolean comprendido = true;
-        int valor = 0;
+        int valor;
         if (parteDelTotal.isEmpty()){
             comprendido = false;
         }

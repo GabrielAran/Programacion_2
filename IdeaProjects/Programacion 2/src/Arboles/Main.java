@@ -13,7 +13,7 @@ public class Main {
 
         // ESTO PRINTEA IN-ORDER, OSEA: LEFT-ROOT-RIGHT
         printInOrder(binaryTreeStatic);
-        System.out.println("El peso del Arbol es: " + pesoArbol(binaryTreeStatic));
+        /*System.out.println("El peso del Arbol es: " + pesoArbol(binaryTreeStatic));
         System.out.println("La altura del Arbol es: " + alturaArbol(binaryTreeStatic));
 
         // DINAMICO:
@@ -23,7 +23,7 @@ public class Main {
         arbolits.addRight(6);
         arbolits.getLeft().addLeft(2);
         arbolits.getLeft().addRight(3);
-        printInOrderDinamic(arbolits); // funciona wow
+        printInOrderDinamic(arbolits); // funciona wow*/
     }
 
     public static void printInOrder(BinaryTreeStatic binaryTreeStatic) { // PRINT (LEFT - ROOT - RIGHT)
