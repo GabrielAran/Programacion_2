@@ -4,7 +4,6 @@ import Arboles.BinaryTree;
 import Arboles.IBinaryTree;
 import Arboles.ISearchBinaryTree;
 import Arboles.SearchBinaryTree;
-import NodosCosas.Set;
 
 public class EjerciciosTomsArboles {
     public static void main(String[] args){
@@ -22,6 +21,8 @@ public class EjerciciosTomsArboles {
         System.out.println("El valor es hoja? " + esHojaABB(crearArbolBinarioBusqueda(), 60));
         System.out.println("La cantidad de valores pares son: " + nodosParesEnABB(crearArbolBinarioBusqueda()));
         System.out.println("La cantidad de valores impares son: " + nodosImparesEnABB(crearArbolBinarioBusqueda()));
+        System.out.println("El valor mas chico del ABB es: " + menorElementoABB(crearArbolBinarioBusqueda()));
+        System.out.println("El valor mas grande del ABB es: " + mayorElementoABB(crearArbolBinarioBusqueda()));
     }
 
     public static IBinaryTree crearArbolBinario(){
@@ -157,15 +158,21 @@ public class EjerciciosTomsArboles {
         }
         return nodosImparesEnABB(beto.getLeft()) + nodosImparesEnABB(beto.getRight());
     }
+
+    public static int menorElementoABB(ISearchBinaryTree aarboll) { //DEVUELVE EL ELEMENTO MENOR DE UN ABB
+        if (aarboll.getLeft() == null){
+            return aarboll.getRoot();
+        }
+        return menorElementoABB(aarboll.getLeft());
+    }
+
+    public static int mayorElementoABB(ISearchBinaryTree arbolB) { //DEVUELVE EL ELEMENTO MAYOR DE UN ABB
+        if (arbolB.getRight() == null){
+            return arbolB.getRoot();
+        }
+        return mayorElementoABB(arbolB.getRight());
+    }
 /*
-    public static int MenorElementoABB(TDAABB a) { //DEVUELVE EL ELEMENTO MENOR DE UN ABB
-
-    }
-
-    public static int MayorElementoABB(TDAABB a) { //DEVUELVE EL ELEMENTO MAYOR DE UN ABB
-
-    }
-
     public static int SumaElementosABB(TDAABB a) { //SUMA TODOS LOS ELEMENTOS DE UN ABB
 
     }
