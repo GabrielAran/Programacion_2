@@ -4,6 +4,7 @@ import Arboles.BinaryTree;
 import Arboles.IBinaryTree;
 import Arboles.ISearchBinaryTree;
 import Arboles.SearchBinaryTree;
+import NodosCosas.Set;
 
 public class EjerciciosTomsArboles {
     public static void main(String[] args){
@@ -19,6 +20,8 @@ public class EjerciciosTomsArboles {
         System.out.println("El valor esta en el nivel: " + queNivelEsta(crearArbolBinarioBusqueda(), 60));
         System.out.println("El valor esta en el arbol?? " + existeEnABB(crearArbolBinarioBusqueda(), 50));
         System.out.println("El valor es hoja? " + esHojaABB(crearArbolBinarioBusqueda(), 60));
+        System.out.println("La cantidad de valores pares son: " + nodosParesEnABB(crearArbolBinarioBusqueda()));
+        System.out.println("La cantidad de valores impares son: " + nodosImparesEnABB(crearArbolBinarioBusqueda()));
     }
 
     public static IBinaryTree crearArbolBinario(){
@@ -134,4 +137,52 @@ public class EjerciciosTomsArboles {
             return esHojaABB(arbolBinario.getRight(), value);
         }
     }
+
+    public static int nodosParesEnABB (ISearchBinaryTree beto) { //CUANTOS VALORES PARES DE UN ABB
+        if (beto == null || beto.isEmpty()){
+            return 0;
+        }
+        if (beto.getRoot() %2 == 0){
+            return 1 + nodosParesEnABB(beto.getLeft()) + nodosParesEnABB(beto.getRight());
+        }
+        return nodosParesEnABB(beto.getLeft()) + nodosParesEnABB(beto.getRight());
+    }
+
+    public static int nodosImparesEnABB (ISearchBinaryTree beto) { //CUANTOS VALORES IMPARES DE UN ABB
+        if (beto == null || beto.isEmpty()){
+            return 0;
+        }
+        if (beto.getRoot() %2 != 0){
+            return 1 + nodosImparesEnABB(beto.getLeft()) + nodosImparesEnABB(beto.getRight());
+        }
+        return nodosImparesEnABB(beto.getLeft()) + nodosImparesEnABB(beto.getRight());
+    }
+/*
+    public static int MenorElementoABB(TDAABB a) { //DEVUELVE EL ELEMENTO MENOR DE UN ABB
+
+    }
+
+    public static int MayorElementoABB(TDAABB a) { //DEVUELVE EL ELEMENTO MAYOR DE UN ABB
+
+    }
+
+    public static int SumaElementosABB(TDAABB a) { //SUMA TODOS LOS ELEMENTOS DE UN ABB
+
+    }
+
+    public static int CantHojasABB(TDAABB a) { //DEVUELVE LA CANTIDAD DE HOJAS DE UN ABB
+
+    }
+
+    public static int AlturaABB(TDAABB a) {//DEVUELVE LA ALTURA DE UN ABB (VERIFICA TODAS LAS ALTURAS, AGARRA LA MAS GRANDE Y LE SUMA 1 POR LA RAIZ ORIGINAL
+
+    }
+
+    public static boolean MismaFormaABB(TDAABB a1, TDAABB a2) { //VERIFICA SI 2 ABBs TIENEN LA MISMA FORMA
+
+    }
+
+    public static boolean IgualesABB(TDAABB a1, TDAABB a2) { //VERIFICA SI 2 ABBs SON IGUALES, CON MISMA FORMA Y VALORES EN SUS RAICES
+
+    }*/
 }
