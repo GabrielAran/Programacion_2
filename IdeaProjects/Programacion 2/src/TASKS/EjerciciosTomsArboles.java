@@ -23,6 +23,10 @@ public class EjerciciosTomsArboles {
         System.out.println("La cantidad de valores impares son: " + nodosImparesEnABB(crearArbolBinarioBusqueda()));
         System.out.println("El valor mas chico del ABB es: " + menorElementoABB(crearArbolBinarioBusqueda()));
         System.out.println("El valor mas grande del ABB es: " + mayorElementoABB(crearArbolBinarioBusqueda()));
+        System.out.println("La suma de elementos del arbol es: " + sumaElementosABB(crearArbolBinarioBusqueda()));
+        System.out.println("La cantidad de hojas del arbol es: " + cantHojasABB(crearArbolBinarioBusqueda()));
+        System.out.println("Los arboles tienen la misma forma?: " + mismaFormaABB(crearArbolBinarioBusqueda(), creoUnSegundoABB()));
+        System.out.println("Los arboles son iguales?: " + igualesABB(crearArbolBinarioBusqueda(), creoUnSegundoABB()));
     }
 
     public static IBinaryTree crearArbolBinario(){
@@ -46,6 +50,18 @@ public class EjerciciosTomsArboles {
         binariebusquede.add(45);
         binariebusquede.add(55);
         return binariebusquede;
+    }
+
+    public static ISearchBinaryTree creoUnSegundoABB(){
+        ISearchBinaryTree arvol = new SearchBinaryTree();
+        arvol.add(50);
+        arvol.add(40);
+        arvol.add(30);
+        arvol.add(60);
+        arvol.add(70);
+        arvol.add(45);
+        arvol.add(55);
+        return arvol;
     }
     public static void preOrden (IBinaryTree arbolits) { // PRINT: RAIZ - IZQUIERDA - DERECHA
         // deberia printear: 50 - 20 - 10 - 30 - 60 - 70
@@ -172,24 +188,44 @@ public class EjerciciosTomsArboles {
         }
         return mayorElementoABB(arbolB.getRight());
     }
-/*
-    public static int SumaElementosABB(TDAABB a) { //SUMA TODOS LOS ELEMENTOS DE UN ABB
 
+    public static int sumaElementosABB(ISearchBinaryTree elPepe) { //SUMA TODOS LOS ELEMENTOS DE UN ABB
+        if (elPepe == null || elPepe.isEmpty()){
+            return 0;
+        }
+        return elPepe.getRoot() + sumaElementosABB(elPepe.getLeft()) + sumaElementosABB(elPepe.getRight());
     }
 
-    public static int CantHojasABB(TDAABB a) { //DEVUELVE LA CANTIDAD DE HOJAS DE UN ABB
-
+    public static int cantHojasABB(ISearchBinaryTree josue) { //DEVUELVE LA CANTIDAD DE HOJAS DE UN ABB
+        if (josue == null || josue.isEmpty()){
+            return 0;
+        }
+        if (josue.getLeft() == null && josue.getRight() == null) {
+            return 1;
+        }
+        return cantHojasABB(josue.getLeft()) + cantHojasABB(josue.getRight());
     }
 
-    public static int AlturaABB(TDAABB a) {//DEVUELVE LA ALTURA DE UN ABB (VERIFICA TODAS LAS ALTURAS, AGARRA LA MAS GRANDE Y LE SUMA 1 POR LA RAIZ ORIGINAL
-
+    public static boolean mismaFormaABB(ISearchBinaryTree a1, ISearchBinaryTree a2) { //VERIFICA SI 2 ABBs TIENEN LA MISMA FORMA
+        if (a1 == null && a2 == null){
+            return true;
+        }
+        if (a1 == null || a2 == null){
+            return false;
+        }
+        return mismaFormaABB(a1.getLeft(), a2.getLeft()) && mismaFormaABB(a1.getRight(), a2.getRight());
     }
 
-    public static boolean MismaFormaABB(TDAABB a1, TDAABB a2) { //VERIFICA SI 2 ABBs TIENEN LA MISMA FORMA
-
+    public static boolean igualesABB(ISearchBinaryTree a1, ISearchBinaryTree a2) { //VERIFICA SI 2 ABBs SON IGUALES, CON MISMA FORMA Y VALORES EN SUS RAICES
+        if (a1 == null && a2 == null){
+            return true;
+        }
+        if (a1 == null || a2 == null){
+            return false;
+        }
+        if (a1.getRoot() != a2.getRoot()){
+            return false;
+        }
+        return igualesABB(a1.getLeft(), a2.getLeft()) && igualesABB(a1.getRight(), a2.getRight());
     }
-
-    public static boolean IgualesABB(TDAABB a1, TDAABB a2) { //VERIFICA SI 2 ABBs SON IGUALES, CON MISMA FORMA Y VALORES EN SUS RAICES
-
-    }*/
 }
