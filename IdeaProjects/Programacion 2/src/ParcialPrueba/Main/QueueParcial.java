@@ -1,6 +1,6 @@
 package ParcialPrueba.Main;
 import Clase_02.colasEstaticas;
-public class QueueParcial implements colasEstaticas{
+public class QueueParcial implements IColas{
     private int[] array;
     private int count;
 

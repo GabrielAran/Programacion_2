@@ -1,5 +1,5 @@
 package Clase_02;
-
+// USAR LA OTRA INTERFAZ DE PILA EN CLASE_03
 public interface pilasEstatica {  // LA INTERFEZ DEFINE Q METODOS VA A TENER LA CLASE PILA, SI O SI
     /*
         * Precondicion: La pila debe estar inicializada
