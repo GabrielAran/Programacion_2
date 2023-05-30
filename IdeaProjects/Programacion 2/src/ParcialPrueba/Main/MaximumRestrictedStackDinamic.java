@@ -8,7 +8,15 @@ public class MaximumRestrictedStackDinamic implements IStack {
 
     @Override
     public void add(int a) {
-        this.first = new Node(a, this.first);
+        if (this.first != null && a > this.first.getValue()){ // FIRST ES NUESTO TOPE
+            Node candidate = this.first;
+            while (candidate.getNext() != null){
+                candidate = candidate.getNext();
+            }
+            candidate.setNext(new Node(a, null));
+        } else {
+            this.first = new Node(a, this.first);
+        }
     }
 
     @Override
