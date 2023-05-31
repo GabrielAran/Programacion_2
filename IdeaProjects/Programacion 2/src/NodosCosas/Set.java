@@ -87,10 +87,31 @@ public class Set implements ISet {
     }
 
     @Override
-    public boolean equals(Object o) { // nose q es esto, profe???
+    public boolean equals(Object o) { // retorna true si dos sets son iguales
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Set set = (Set) o;
-        return count == set.count && Objects.equals(first, set.first);
+        if (count != set.count) {
+            return false;
+        }
+
+        Node aux = this.first;
+        while (aux != null) {
+            if (!exists(aux.getValue(), set.first)) {
+                return false;
+            }
+            aux = aux.getNext();
+        }
+        return true;
+    }
+
+    private boolean exists(int value, Node node) { // retorna true si un value esta en el set
+        if (node == null) {
+            return false;
+        }
+        if (value == node.getValue()) {
+            return true;
+        }
+        return exists(value, node.getNext());
     }
 }
