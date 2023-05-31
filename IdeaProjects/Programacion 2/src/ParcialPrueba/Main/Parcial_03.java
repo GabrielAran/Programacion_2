@@ -27,6 +27,19 @@ public class Parcial_03 {
         d2.add(2, 9);
         d2.add(2, 1);
         System.out.println("Es verdadero? " + relacionDeSuma(d1, d2));
+
+        System.out.println("\n");
+        /*
+        A. Explique que similitud existe entre un ´arbol binario de b´usqueda y el
+            algoritmo de b´usqueda binaria:
+
+        La complejidad computacional del algoritmo busqueda binaria es O(log n),
+        con la precondicion de aplicarse sobre un arreglo ordenado. Para lograrlo aprovecha el acceso constante al arreglo dado un ındice.
+        Por otro lado, la complejidad computacional de un SBT es O(log n) pero
+        tiende a O(n) mientras m´as elementos se agregan. Debido a esto, se busca
+        balancear el arbol para mantener la complejidad logar´ıtmica.
+        El algoritmo busqueda binaria logra tener una complejidad O(log n) en estructuras est´aticas, mientras que SBT balanceado lo logra sobre una estructura
+        dinamica. */
     }
 
     public static boolean relacionDeSuma(Dictionary diSimple, MultipleDictionary diMultiple){
