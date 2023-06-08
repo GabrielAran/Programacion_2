@@ -3,6 +3,7 @@ package NodosCosas;
 import Clase_02.colasEstaticas;
 import Clase_03.Node;
 
+
 public class ColasDinamicas implements colasEstaticas {
     private Node first;
     @Override

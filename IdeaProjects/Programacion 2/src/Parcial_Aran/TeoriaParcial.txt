@@ -1,0 +1,13 @@
+3.a)
+Las complejidades de O(n⁵) y de O(n⁴) son complejidades exponenciales, por lo tanto tienen un costo altisimo.
+La unica diferencia es que mientras mas elementos alla para O(n⁵) sera aun mayor el costo que para O(n⁴).
+En tanto tengas mas valores en O(n⁵) la diferencia sera más notable ya que es exponencial. (:
+
+3.b)
+complejidad = O(n), 128 elementos
+Para resolver esto se deberia ir comparando el valor a buscar con los 128 elementos.
+Asi que maximo son 128 comparaciones en el caso que el valor a buscar este al final del arreglo.
+Un paso seria: Agarrar un elemento del array y compararlo con el valor
+Otro paso es devolver si encontro o no el valor en caso de que el paso anterior se cumpla
+Entonces serian 128 comparaciones + 1 vez de asignarle true o false si se encontro o no el valor
+129 pasos (:
