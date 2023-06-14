@@ -1,4 +1,4 @@
-package Tp_progra;
+package Tp_progra.Ejercicio1;
 
 import Clase_02.PIla;
 
