@@ -1,4 +1,4 @@
-package Tp_progra.Ejercicio2;
+package TPO.Ejercicio2;
 import java.util.Random;
 
 public class SetGenerico<T> {

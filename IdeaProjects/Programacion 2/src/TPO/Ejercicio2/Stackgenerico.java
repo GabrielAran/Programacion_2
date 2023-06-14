@@ -1,4 +1,4 @@
-package Tp_progra.Ejercicio2;
+package TPO.Ejercicio2;
 public class Stackgenerico<T> { // STACK GENERICO
     private NodeGenerico<T> first;
 

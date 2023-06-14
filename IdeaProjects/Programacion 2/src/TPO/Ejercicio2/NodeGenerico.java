@@ -1,4 +1,4 @@
-package Tp_progra.Ejercicio2;
+package TPO.Ejercicio2;
 
 public class NodeGenerico<T> {
     private T value;

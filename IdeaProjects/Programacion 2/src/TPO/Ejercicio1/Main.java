@@ -1,4 +1,4 @@
-package Tp_progra.Ejercicio1;
+package TPO.Ejercicio1;
 
 import Clase_03.Stack;
 
