@@ -1,37 +1,9 @@
 package TPO.Ejercicio3;
 
 import Clase_02.Colas;
-
 public class Main {
     public static void main(String[] args){
-
     }
-
-    public static QueueOfQueue generarQueues(){
-        QueueOfQueue cola = new QueueOfQueue();
-        Colas col = new Colas();
-        Colas col2 = new Colas();
-        col.acolar(2);
-        col.acolar(3);
-        col.acolar(4);
-
-        col2.acolar(5);
-        col2.acolar(6);
-        col2.acolar(7);
-        cola.acolar(col);
-        cola.acolar(col2);
-        return cola;
-    }
-    public static void mostrarCola(QueueOfQueue cola){
-        while (!cola.estaVacio()){
-            while (!cola.getPrimero().estaVacio()){
-                System.out.println("p: " + cola.getPrimero().getPrimero());
-                cola.getPrimero().desacolar();
-            }
-            cola.desacolar();
-        }
-    }
-
     public static QueueOfQueue concatenar(QueueOfQueue c1, QueueOfQueue c2){
         QueueOfQueue nueva = new QueueOfQueue();
         while (!c1.estaVacio()){ // lleno la nueva con la primera
@@ -58,13 +30,14 @@ public class Main {
     }
 
     public static QueueOfQueue reverseWithDepth(QueueOfQueue cola) { // terminar, no esta bien
-        Colas[] listaColas;
+        QueueOfQueue queueinvertida = new QueueOfQueue();
         while (!cola.estaVacio()){
-
+            invertirCola(cola.getPrimero());
+            queueinvertida.acolar(cola.getPrimero()); // invierto cada cola y la acolo en una nueva QueueOfQueue
             cola.desacolar();
         }
-        invertirQueueOfQueue(cola); // invierto la QueueOfQueue
-        return cola;
+        invertirQueueOfQueue(queueinvertida); // invierto la QueueOfQueue total (:
+        return queueinvertida;
     }
 
     public static void invertirCola(Colas cola){
@@ -77,13 +50,13 @@ public class Main {
         cola.acolar(temporal);
     }
 
-    public static void invertirQueueOfQueue(QueueOfQueue cola){
-        if (cola.estaVacio()){
+    public static void invertirQueueOfQueue(QueueOfQueue queue){
+        if (queue.estaVacio()){
             return;
         }
-        Colas temporal = cola.getPrimero();
-        cola.desacolar();
-        reverseWithDepth(cola);
-        cola.acolar(temporal);
+        Colas temporal = queue.getPrimero();
+        queue.desacolar();
+        invertirQueueOfQueue(queue);
+        queue.acolar(temporal);
     }
 }

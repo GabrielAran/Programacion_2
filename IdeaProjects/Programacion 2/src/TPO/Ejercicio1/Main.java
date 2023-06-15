@@ -4,12 +4,6 @@ import Clase_03.Stack;
 
 public class Main {
     public static void main(String[] args){
-        //LA FUNCION GENERAR MATRIZ DEVUELVE UNA MATRIZ DE 3X3 SOLO PARA TENER UN EJEMPLO, NO ES PARA UN USO CORRECTO.
-        mostrarMatrizCuadrada(generarMatrizNxN(3));
-        System.out.println("La traza da: " + calcularTraza(generarMatrizNxN(3), 1));
-        mostrarMatrizCuadrada(traspuesta(generarMatrizNxN(3), 3));
-        mostrarMatrizCuadrada(sumaMatricial(generarMatrizNxN(3), generarMatrizNxN(3), 3));
-
         /*
         * La complejidad computacional de los algoritmos es:
         * Ejercicio a: O(n²)
@@ -89,30 +83,5 @@ public class Main {
             System.out.println();
         }
         return alRevez;
-    }
-    public static QueueOfStacks generarMatrizNxN(int n){
-        QueueOfStacks matriz = new QueueOfStacks(n); // n x n = 3 x 3
-        matriz.acolar(9);
-        matriz.acolar(6);
-        matriz.acolar(3);
-
-        matriz.acolar(8);
-        matriz.acolar(5);
-        matriz.acolar(2);
-
-        matriz.acolar(7);
-        matriz.acolar(4);
-        matriz.acolar(1);
-        return matriz;
-    }
-    public static void mostrarMatrizCuadrada(QueueOfStacks m){
-        while (!m.estaVacio()){
-            while (!m.getPrimero().isEmpty()){
-                System.out.println(m.getPrimero().getTope());
-                m.getPrimero().desapilar();
-            }
-            System.out.println();
-            m.desacolar();
-        }
     }
 }
