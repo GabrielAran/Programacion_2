@@ -1,7 +1,5 @@
 package TPO.Ejercicio4;
 
-import NodosCosas.Set;
-
 public class Main {
     public static void main(String[] args){
         //Investigue el patrón Builder. Modifique la estructura Set y la estructura Stack para que tengan un
