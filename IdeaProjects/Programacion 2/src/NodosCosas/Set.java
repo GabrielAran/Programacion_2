@@ -1,12 +1,9 @@
 package NodosCosas;
 
 import Clase_03.Node;
-
-import java.util.Objects;
 import java.util.Random;
 
 public class Set implements ISet {
-
     private Node first;
     private int count;
 
