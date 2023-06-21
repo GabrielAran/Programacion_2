@@ -4,7 +4,6 @@ import Clase_03.Node;
 
 public class StackLimitada {
     private Node first;
-
     private int limite;
     private int count;
 
