@@ -4,16 +4,11 @@ import Clase_02.Colas;
 public class Main {
     public static void main(String[] args){
     }
-    public static QueueOfQueue concatenar(QueueOfQueue c1, QueueOfQueue c2){
+    public static QueueOfQueue concatenar(QueueOfQueue c1){
         QueueOfQueue nueva = new QueueOfQueue();
-        while (!c1.estaVacio()){ // lleno la nueva con la primera
-            nueva.acolar(c1.getPrimero());
-            c1.desacolar();
-        }
-        while (!c2.estaVacio()){
-            nueva.acolar(c2.getPrimero());
-            c2.desacolar();
-        }
+        Colas queue;
+        queue = flat(c1);
+        nueva.acolar(queue);
         return nueva;
     }
 
