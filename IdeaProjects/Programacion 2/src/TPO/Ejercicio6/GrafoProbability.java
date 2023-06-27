@@ -48,7 +48,7 @@ public class GrafoProbability implements GrafoTDAProbability {
     public void AgregarArista(int v1, int v2) {
         int o = Vert2Indice(v1); // index de v1 // 0
         int d = Vert2Indice(v2); // index de v2 // 2
-        double probabilidad = 1.0 / this.cantNodos;
+        double probabilidad = 1.0 / this.cantNodos; // probabilidad en base a cantidad de vertices en el grafo
         MAdy [o][d] = probabilidad; // en [0][2] = peso
     }
 
