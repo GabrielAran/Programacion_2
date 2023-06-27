@@ -1,0 +1,22 @@
+1) VERTICE:
+    Cada circulito, cada elemento del grafo se le llama VERTICE
+
+2) ARISTA:
+    Las aristas son las que unen a los vertices
+
+3) TIPOS DE GRAFOS:
+
+    a) NO-DIRIGIDO: Las aristas no tienen sentido/direccion, (arista 0, 5) = (arista 5, 0).
+
+    b) DIRIGIDO: Las aristas si tienen sentido/direccion.
+
+    c) CON-PESO: Las aristas tienen asignadas un valor. (Puede ser Dirigido o No Dirigido).
+
+    d) ACICLICLOS O CICLICOS: Existen grafos ciclicos y grafos no ciclicos.
+
+
+4) REPRESENTACION DE GRAFOS:
+
+    a) MATRIZ DE ADYACENCIA: Vertices --> (A, B, C, D). En (A, A) se encuentra el valor del peso entre ellos.
+
+    b) LISTA DE ADYACENCIA: Se crear vectores para cada vertice y adentro de el, tuplas con (VERTICE a donde voy, PESO).
