@@ -25,13 +25,13 @@ public class Graph implements IGraph {
         }
 
         // Esto se puede colocar dentro de un condicional this.totalNodes != 0
-        ISet nodes = this.dictionary.getKeys(); // creo un SET con las keys del diccionario, (key = val(5))
-        while(!nodes.isEmpty()) { // chequeo que el vertice no exista previamente
-            int current = nodes.choose();
+        ISet vertices = this.dictionary.getKeys(); // creo un SET con las keys del diccionario, (key = val(5))
+        while(!vertices.isEmpty()) { // chequeo que el vertice no exista previamente
+            int current = vertices.choose();
             if(current == val) {
                 throw new RuntimeException("El nodo ya existe");
             }
-            nodes.remove(current);
+            vertices.remove(current);
         }
         // si el valor no existe en el grafo -->
         this.dictionary.add(val, this.contValues); // key = 3, value = cantValores
@@ -131,6 +131,17 @@ public class Graph implements IGraph {
         int indexTo = this.dictionary.getValue(to);
 
         return this.adjacencyMatrix[indexFrom][indexTo] != 0;
+    }
+
+    public boolean edgeExistsBothSides(int from, int to) {
+        if(notIn(from) || notIn(to)) {
+            return false;
+        }
+
+        int indexFrom = this.dictionary.getValue(from);
+        int indexTo = this.dictionary.getValue(to);
+
+        return this.adjacencyMatrix[indexFrom][indexTo] != 0 || this.adjacencyMatrix[indexTo][indexFrom] != 0;
     }
 
     @Override

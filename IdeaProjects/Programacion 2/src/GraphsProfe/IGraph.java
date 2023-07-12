@@ -54,4 +54,6 @@ public interface IGraph {
      * @return peso de la arista.
      */
     int weight(int from, int to);
+
+    boolean edgeExistsBothSides(int from, int to);
 }
