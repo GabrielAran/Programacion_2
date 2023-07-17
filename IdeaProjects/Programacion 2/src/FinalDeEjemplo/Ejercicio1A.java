@@ -1,7 +1,8 @@
-package GraphsProfe;
+package FinalDeEjemplo;
 
 import Diccionarios.Dictionary;
 import Diccionarios.IDictionary;
+import GraphsProfe.IGraph;
 import NodosCosas.ISet;
 /*
 A. Modificar la implementacion de Graph para que, si es posible ir de v1 a
@@ -11,13 +12,13 @@ una arista de v1 a v3 con peso igual a la suma de los pesos de las aristas
 v1v2 +v2v3. Solo debe hacerse esto si no existia previamente una arista de
 v1 a v3.
 */
-public class GraphV1_V3 implements IGraph {
+public class Ejercicio1A implements IGraph {
     private static final int MAX_NODES = 15;
     private final int[][] adjacencyMatrix;
     private final IDictionary dictionary;
     private int contValues;
 
-    public GraphV1_V3() {
+    public Ejercicio1A() {
         this.adjacencyMatrix = new int[MAX_NODES][MAX_NODES]; // para ver si hay aristas
         this.dictionary = new Dictionary(); // Asumo que el límite es mayor a MAX_NODES
         this.contValues = 0;

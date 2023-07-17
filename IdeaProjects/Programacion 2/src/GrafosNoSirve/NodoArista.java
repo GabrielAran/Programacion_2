@@ -1,4 +1,4 @@
-package Grafos;
+package GrafosNoSirve;
 public class NodoArista {       //nodo rojo
     int etiqueta;
     NodoGrafo nodoDestino; // flecha verde de trazos

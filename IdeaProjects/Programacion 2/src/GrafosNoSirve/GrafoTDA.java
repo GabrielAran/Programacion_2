@@ -1,4 +1,4 @@
-package Grafos;
+package GrafosNoSirve;
 
 import NodosCosas.ISet;
 public interface GrafoTDA {
