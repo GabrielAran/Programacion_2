@@ -7,10 +7,27 @@ import NodosCosas.Set;
 
 public class EjerciciosGrafosToms {
     public static void main(String args[]){
-        mostrarGrafo(generarGraph());
+        /*mostrarGrafo(generarGraph());
         vecinosGrafos(generarGraph(), 12);
         System.out.println("El mayor peso es: " + aristaSalienteMayorPeso(generarGraph(), 4));
-        mostrarDicSimple(graphToDictionary(generarGraph()));
+        mostrarDicSimple(graphToDictionary(generarGraph()));*/
+        GrafoHamiltoneano graph = generarHamilton();
+        System.out.println("Es hamiltoniano no ciclico? " + graph.isPossiblyAnOrderedList());
+    }
+    public static GrafoHamiltoneano generarHamilton(){
+        GrafoHamiltoneano grafo = new GrafoHamiltoneano();
+        grafo.addNode(1);
+        grafo.addNode(3);
+        grafo.addNode(4);
+        grafo.addNode(8);
+        grafo.addNode(9);
+
+        grafo.addEdge(1, 3, 100);
+        grafo.addEdge(3, 4, 200);
+        grafo.addEdge(4, 8, 300);
+        grafo.addEdge(8, 9, 400);
+        //grafo.addEdge(1, 9, 500);
+        return grafo;
     }
     public static IGraph generarGraph(){
         IGraph grafo = new Graph();
@@ -37,7 +54,6 @@ public class EjerciciosGrafosToms {
                     System.out.println("");
                 }
             }
-
         }
     }
     public static ISet vecinosGrafos(IGraph g, int v) {
@@ -73,7 +89,6 @@ public class EjerciciosGrafosToms {
         }
         return mayorWeight;
     }
-
     public static IDictionary graphToDictionary(IGraph g) {
         //CONVIERTE UN GRAFO EN UN DIC SIMPLE EN EL QUE LAS CLAVES SON LOS VERTICES
         //Y LOS VALORES LA SUMATORIA DE SUS ARISTAS SALIENTES
